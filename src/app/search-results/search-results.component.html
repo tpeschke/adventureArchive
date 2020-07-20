@@ -1,0 +1,24 @@
+<div class="resultCountShell">
+  <h2>{{adventures.length}} Results Found</h2>
+</div>
+
+<mat-card *ngFor="let adventure of adventures">
+  <div>
+      <img routerLink="../adventure/{{adventure.id}}" *ngIf="!adventure.locked" class="adventureCovers"
+          src="{{adventure.cover}}" alt="{{adventure.title}}">
+      <div routerLink="../adventure/{{adventure.id}}" class="adventureLocked" *ngIf="adventure.locked">
+          <img class="adventureCovers" src="{{adventure.cover}}" alt="{{adventure.title}}">
+          <div class="adventureLock"></div>
+          <i matTooltip="{{adventure.tooltip}}" matTooltipPosition="right" class="fas fa-lock"></i>
+      </div>
+  </div>
+
+  <div class="middleSearch">
+      <h1>{{adventure.title}}</h1>
+      <p>{{adventure.summary}}</p>
+  </div>
+
+  <div>
+      Additional Search Info
+  </div>
+</mat-card>

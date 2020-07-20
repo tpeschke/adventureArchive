@@ -1,0 +1,72 @@
+.resultCountShell {
+    width: 75%;
+    margin: 0 auto 15px;
+    padding-left: 15px;
+  }
+  
+  mat-card {
+    width: 75%;
+    max-height: 230px;
+    margin: 0 auto 15px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .middleSearch {
+    margin-right: 15px;
+    padding: 0 15px;
+    max-width: 65%;
+    overflow-y: auto;
+    border-right: 1px solid lightgray
+  }
+  
+  p {
+    text-indent: 50px;
+    max-height: 200px;
+  }
+  
+  .featuredShell {
+    float: left;
+    margin: 0 15px 15px 0;
+  }
+  
+  .featuredHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+  }
+  
+  .adventureLocked {
+    position: relative;
+  }
+  
+  img {
+    height: 200px;
+    width: 150px;
+    cursor: pointer;
+  }
+  
+  .adventureLock {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 99.5%;
+    background: rgba(0, 0, 0, 0.35);
+  }
+  
+  .fa-lock {
+    font-size: 25px;
+    color: whitesmoke;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+  }
+  

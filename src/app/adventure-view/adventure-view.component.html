@@ -1,0 +1,33 @@
+<mat-card>
+  <div>
+      <div class="featuredHeader">
+          <h1>{{adventure.title}}</h1>
+      </div>
+
+      <div>
+          <div class="adventureCoverShell featuredShell">
+              <img routerLink="../adventure/{{adventure.id}}" *ngIf="!adventure.locked" class="adventureCovers"
+                  src="{{adventure.cover}}" alt="{{adventure.title}}">
+              <div class="adventureLocked" *ngIf="adventure.locked">
+                  <img class="adventureCovers" src="{{adventure.cover}}" alt="{{adventure.title}}">
+                  <div class="adventureLock"></div>
+                  <i matTooltip="{{adventure.tooltip}}" matTooltipPosition="right" class="fas fa-lock"></i>
+              </div>
+          </div>
+
+          <p *ngFor="let paragraph of adventure.summary">{{paragraph}}</p>
+      </div>
+  </div>
+</mat-card>
+
+<mat-card>
+  Meta notes
+</mat-card>
+
+<mat-card>
+  Search Information
+</mat-card>
+
+<mat-card>
+  Download Area
+</mat-card>

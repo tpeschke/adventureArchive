@@ -1,0 +1,35 @@
+<div class="outerShell">
+  <mat-card>
+      <div class="adventureCoverShell" *ngFor="let adventure of adventures">
+          <img routerLink="../adventure/{{adventure.id}}" *ngIf="!adventure.locked" class="adventureCovers" src="{{adventure.cover}}" alt="{{adventure.title}}">
+          <div routerLink="../adventure/{{adventure.id}}" class="adventureLocked" *ngIf="adventure.locked">
+              <img class="adventureCovers" src="{{adventure.cover}}" alt="{{adventure.title}}">
+              <div class="adventureLock"></div>
+              <i matTooltip="{{adventure.tooltip}}" matTooltipPosition="right" class="fas fa-lock"></i>
+          </div>
+      </div>
+  </mat-card>
+
+  <mat-card>
+      <div *ngIf="featuredAdventure">
+          <div class="featuredHeader">
+              <h1 routerLink="../adventure/{{featuredAdventure.id}}">{{featuredAdventure.title}}</h1>
+              <p>Featured Adventure</p>
+          </div>
+
+          <div>
+              <div class="adventureCoverShell featuredShell">
+                  <img routerLink="../adventure/{{featuredAdventure.id}}" *ngIf="!featuredAdventure.locked" class="adventureCovers" src="{{featuredAdventure.cover}}" alt="{{featuredAdventure.title}}">
+                  <div routerLink="../adventure/{{featuredAdventure.id}}" class="adventureLocked" *ngIf="featuredAdventure.locked">
+                      <img class="adventureCovers" src="{{featuredAdventure.cover}}" alt="{{featuredAdventure.title}}">
+                      <div class="adventureLock"></div>
+                      <i matTooltip="{{featuredAdventure.tooltip}}" matTooltipPosition="right" class="fas fa-lock"></i>
+                  </div>
+              </div>
+
+              <p class="summaryParagraph">{{featuredAdventure.summary}}</p>
+              <button class="secondaryButtonColor" mat-raised-button routerLink="../adventure/{{featuredAdventure.id}}">Learn More</button>
+          </div>
+      </div>
+  </mat-card>
+</div>
