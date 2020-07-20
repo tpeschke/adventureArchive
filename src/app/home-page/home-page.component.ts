@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AdventureService } from '../adventure.service';
+import { AdventureService } from '../utils/adventure.service';
 
 @Component({
   selector: 'app-home-page',

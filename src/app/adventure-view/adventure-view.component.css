@@ -4,7 +4,7 @@ mat-card {
   }
   
   mat-card:first-child {
-    min-height: 430px;
+    min-height: 480px;
   }
   
   .adventureCoverShell {
@@ -40,7 +40,6 @@ mat-card {
   
   img {
     width: 100%;
-    cursor: pointer;
   }
   
   .adventureLock {

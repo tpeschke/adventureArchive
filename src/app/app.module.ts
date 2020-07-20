@@ -18,7 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { SearchHeaderComponent } from './search-header/search-header.component';
-import { AdventureService } from './adventure.service';
+import { AdventureService } from './utils/adventure.service';
 
 @NgModule({
   declarations: [

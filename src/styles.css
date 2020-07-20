@@ -2,7 +2,16 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import url('https://fonts.googleapis.com/css?family=Grenze&display=swap');
+@font-face {
+	font-family: 'ancient';
+	src: url('./assets/jancient.ttf') format("truetype");
+  }
+  @font-face {
+	font-family: 'umbria';
+	src: url('./assets/umbria.ttf') format("truetype");
+  }
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -36,7 +45,7 @@ body {
     background: lightgray;
 }
 h1 {
-	font-family: 'Grenze', serif;
+	font-family: 'umbria';
 }
 ol, ul {
 	list-style: none;
@@ -56,5 +65,13 @@ table {
 
 mat-card { 
 	background: whitesmoke;
+}
 
+button {
+	font-family: 'ancient' !important;
+}
+
+button:hover {
+	background: #b45f06 !important;
+	color: whitesmoke !important;
 }

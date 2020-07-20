@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router'
-import { AdventureService } from '../adventure.service';
+import { AdventureService } from '../utils/adventure.service';
 
 @Component({
   selector: 'app-search-results',
