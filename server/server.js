@@ -12,6 +12,8 @@ const app = new express()
 app.use(bodyParser.json())
 app.use(cors())
 
+app.use(express.static(__dirname + `/../dist/`));
+
 /////////////////////////////////
 //TESTING TOPLEVEL MIDDLEWARE////
 ///COMMENT OUT WHEN AUTH0 READY///
@@ -33,9 +35,7 @@ app.get('/api/SingleAdventure/:id', mainCtrl.singleAdventure)
 
 app.get('/api/search', searchCtrl.search)
 
-// Point static path to dist
-app.use(express.static(path.join(__dirname, 'dist')));
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 

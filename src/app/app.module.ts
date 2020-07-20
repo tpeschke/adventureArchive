@@ -18,6 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { SearchHeaderComponent } from './search-header/search-header.component';
+import { AdventureService } from './adventure.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { SearchHeaderComponent } from './search-header/search-header.component';
     MatSelectModule,
     MatCheckboxModule
   ],
-  providers: [],
+  providers: [AdventureService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

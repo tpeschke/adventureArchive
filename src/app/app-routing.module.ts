@@ -5,7 +5,7 @@ import { AdventureViewComponent } from './adventure-view/adventure-view.componen
 import { SearchResultsComponent } from './search-results/search-results.component'
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent },
+  { path: '', component: HomePageComponent, pathMatch: "full" },
   { path: 'adventure/:id', component: AdventureViewComponent },
   { path: 'search', component: SearchResultsComponent },
   { path: '**', redirectTo: '' },
