@@ -25,7 +25,7 @@ export class AdventureService {
     private toastr: ToastrService
   ) { }
 
-  private handleError<T>(operation = 'operation', result?: T) {
+  public handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       if (error.status === 200) {
         this.toastr.success('', `${error.error.text}`);

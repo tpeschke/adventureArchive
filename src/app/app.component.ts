@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoginService } from './utils/login.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'adventureArchive';
+  constructor(
+    private loginService: LoginService
+  ) {  }
+
+  ngOnInit() {
+    if (!this.loginService.userLoggedIn) {
+      this.loginService.checkLogin().subscribe(result => {
+        console.log(this.loginService.userLoggedIn)
+      })
+    }
+  }
 }

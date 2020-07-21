@@ -18,22 +18,23 @@ app.use(express.static(__dirname + `/../dist/`));
 //TESTING TOPLEVEL MIDDLEWARE////
 ///COMMENT OUT WHEN AUTH0 READY///
 /////////////////////////////////
-// app.use((req, res, next) => {
-//     if (!req.user) {
-//         req.user = {
-//             id: 1,
-//             email: "mr.peschke@gmail.com",
-//             patreon: 3
-//         }
-//     }
-//     next();
-// })
+app.use((req, res, next) => {
+    if (!req.user) {
+        req.user = {
+            id: 1,
+            patreon: 3
+        }
+    }
+    next();
+})
 
 app.get('/api/AllAdventures', mainCtrl.previews)
 app.get('/api/FeaturedAdventure', mainCtrl.featured)
 app.get('/api/SingleAdventure/:id', mainCtrl.singleAdventure)
 
 app.get('/api/search', searchCtrl.search)
+
+app.get('/api/checkLogin', (req, res) => req.user ? res.send(req.user) : res.send({id: null, patreon: null}))
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../dist/index.html'));

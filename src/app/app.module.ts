@@ -19,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { SearchHeaderComponent } from './search-header/search-header.component';
 import { AdventureService } from './utils/adventure.service';
+import { LoginService } from './utils/login.service'
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { AdventureService } from './utils/adventure.service';
     MatSelectModule,
     MatCheckboxModule
   ],
-  providers: [AdventureService],
+  providers: [AdventureService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
