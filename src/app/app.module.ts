@@ -19,7 +19,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { SearchHeaderComponent } from './search-header/search-header.component';
 import { AdventureService } from './utils/adventure.service';
-import { LoginService } from './utils/login.service'
+import { LoginService } from './utils/login.service';
+import { AdventureAddComponent } from './adventure-add/adventure-add.component'
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { LoginService } from './utils/login.service'
     HomePageComponent,
     AdventureViewComponent,
     SearchResultsComponent,
-    SearchHeaderComponent
+    SearchHeaderComponent,
+    AdventureAddComponent
   ],
   imports: [
     BrowserModule,

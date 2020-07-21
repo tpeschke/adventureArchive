@@ -13,9 +13,7 @@ export class AppComponent {
 
   ngOnInit() {
     if (!this.loginService.userLoggedIn) {
-      this.loginService.checkLogin().subscribe(result => {
-        console.log(this.loginService.userLoggedIn)
-      })
+      this.loginService.checkLogin().subscribe()
     }
   }
 }

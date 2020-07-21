@@ -21,8 +21,8 @@ export class LoginService {
     
   public userLoggedIn = null
 
-  checkLogin(): Observable<User[]> {
-    return this.http.get<User[]>(local.endpointBase + '/api/checkLogin')
+  checkLogin(): Observable<User> {
+    return this.http.get<User>(local.endpointBase + '/api/checkLogin')
       .pipe(
         tap(user => this.userLoggedIn = user)
       )
