@@ -69,4 +69,9 @@ export class AdventureService {
         catchError(this.handleError('get search adventures', []))
       )
   }
+
+  imageUpload(imageForm: FormData, id: number) {
+    this.toastr.warning('', `image uploading`)
+    return this.http.post(local.endpointBase + '/api/uploadImage/' + id, imageForm);
+  }
 }

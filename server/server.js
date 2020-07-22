@@ -5,7 +5,8 @@ const { connection } = require('./secret')
     , massive = require('massive')
     , searchCtrl = require('./searchController')
     , mainCtrl = require('./mainController')
-    , path = require("path");
+    , path = require("path")
+    , upload = require('./fileUploadController')
     require('dotenv').config();
 
 const app = new express()
@@ -35,6 +36,18 @@ app.get('/api/SingleAdventure/:id', mainCtrl.singleAdventure)
 app.get('/api/search', searchCtrl.search)
 
 app.get('/api/checkLogin', (req, res) => req.user ? res.send(req.user) : res.send({id: null, patreon: null}))
+
+function ownerAuth (req, res, next) {
+    if (!req.user) {
+        res.sendStatus(401)
+    } else if (req.user.id !== 1 && req.user.id !== 21) {
+        res.sendStatus(401)
+    } else {
+        next()
+    }
+}
+
+app.post('/api/uploadImage/:id', ownerAuth, upload.array('image', 1), (req, res) => res.send({ image: req.file }));
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../dist/index.html'));

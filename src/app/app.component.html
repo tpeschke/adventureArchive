@@ -3,7 +3,7 @@
 
   <span class="middleSpace"></span>
 
-  <button *ngIf="loginService.userLoggedIn.id === 1" mat-raised-button [routerLink]="['/add', 0]">Add</button>
+  <button *ngIf="loginService.userLoggedIn && loginService.userLoggedIn.id === 1" mat-raised-button [routerLink]="['/add', 0]">Add</button>
   <button *ngIf="!loginService.userLoggedIn" mat-raised-button>Login</button>
 </mat-toolbar>
 

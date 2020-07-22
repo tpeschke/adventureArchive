@@ -8,7 +8,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip'; 
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -21,6 +22,8 @@ import { SearchHeaderComponent } from './search-header/search-header.component';
 import { AdventureService } from './utils/adventure.service';
 import { LoginService } from './utils/login.service';
 import { AdventureAddComponent } from './adventure-add/adventure-add.component'
+
+import { QuillModule } from 'ngx-quill'
 
 @NgModule({
   declarations: [
@@ -44,7 +47,9 @@ import { AdventureAddComponent } from './adventure-add/adventure-add.component'
     HttpClientModule,
     MatTooltipModule,
     MatSelectModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    FormsModule,
+    QuillModule.forRoot()
   ],
   providers: [AdventureService, LoginService],
   bootstrap: [AppComponent]

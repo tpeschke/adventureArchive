@@ -15,19 +15,19 @@
               </div>
           </div>
 
-          <p *ngFor="let paragraph of adventure.summary">{{paragraph}}</p>
+          <quill-view-html [content]="adventure.summary"></quill-view-html>
       </div>
   </div>
 </mat-card>
 
 <mat-card>
-  Meta notes
+  <h1>Meta Notes</h1>
 </mat-card>
 
 <mat-card>
-  Search Information
+  <h1>Search Information</h1>
 </mat-card>
 
 <mat-card>
-  Download Area
+  <h1>Downloads</h1>
 </mat-card>

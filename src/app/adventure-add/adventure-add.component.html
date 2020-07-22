@@ -1,3 +1,65 @@
-<p>
-  adventure-add works!
-</p>
+<mat-card>
+  <div>
+    <div class="featuredHeader">
+      <mat-form-field>
+        <input matInput placeholder="Series Code" [value]="adventure.seriescode"
+          (change)="captureInput($event, 'seriescode')">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Series Number" [value]="adventure.seriesnumber"
+          (change)="captureInput($event, 'seriesnumber')">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Title" [value]="adventure.title" (change)="captureInput($event, 'title')">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Patreon Level</mat-label>
+        <mat-select [value]="adventure.patreontier" (selectionChange)="captureSelect($event, 'patreontier')">
+          <mat-option value="0">
+            Basic
+          </mat-option>
+          <mat-option value="3">
+            Advanced
+          </mat-option>
+          <mat-option value="20">
+            Early Access
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="margin-spacing">
+        <input (change)="onImagePicked($event)" placeholder="Upload Image" type="file" />
+        <button mat-button-raised color="accent" (click)="onImageUpload()">Upload Cover</button>
+      </div>
+
+      <div class="margin-spacing" *ngIf="!adventure.id">
+        <h3>You need to save this adventure before uploading a cover</h3>
+      </div>
+
+      <div class="margin-spacing">
+        <input (change)="onPDFSelect($event)" placeholder="Upload Image" type="file" />
+      </div>
+
+      <quill-editor [(ngModel)]="adventure.summary" (onContentChanged)="captureHTML($event, 'summary')"></quill-editor>
+    </div>
+  </div>
+</mat-card>
+
+<mat-card>
+  <h1>Meta Notes</h1>
+</mat-card>
+
+<mat-card>
+  <h1>Search Information</h1>
+</mat-card>
+
+<mat-card>
+  <h1>Downloads</h1>
+</mat-card>
+
+<mat-card>
+  <button mat-raised-button color="primary">Save</button>
+</mat-card>
