@@ -1,3 +1,2 @@
-select body from aasummary
+select body as summary from aasummary
 where adventureid = $1
-order by index asc;

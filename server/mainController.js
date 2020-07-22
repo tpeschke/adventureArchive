@@ -1,3 +1,5 @@
+const upload = require('./fileUploadController')
+
 module.exports = {
     previews: (req, res) => {
         const db = req.app.get('db')
@@ -33,13 +35,7 @@ module.exports = {
         const db = req.app.get('db')
 
         db.get.adventurePreview(req.params.id).then(result => {
-            db.get.summaryFull(result[0].id).then(summaryRaw => {
-                let summary = []
-
-                summaryRaw.forEach(val => {
-                    summary.push(val.body)
-                })
-
+            db.get.summaryFull(result[0].id).then(({summary}) => {
                 let adventureObj = {}
                 if (req.user) {
                     adventureObj = {...result[0], locked: req.user.patreon < result[0].patreontier}
@@ -50,5 +46,29 @@ module.exports = {
                 res.send([adventureObj])
             })
         })
+    },
+
+    //ADD
+    addAdventure({ body, app }, res) {
+        const db = app.get('db')
+        let {title, patreontier, seriescode, seriesnumber, summary} = body
+        , tooltip = "Early Access"
+
+        switch (patreontier) {
+            case ("0"):
+                tooltip = "Basic"
+                break;
+            case ("3"):
+                tooltip = "Advanced"
+                break;
+            default:
+                break;
+        }
+        db.post.mainAdventure(title, patreontier, seriescode, seriesnumber, tooltip).then(result => {
+            let adventureId = result[0].id
+            db.post.summary(adventureId, summary).then(resultTwo => {
+                res.send({id: adventureId})
+            })
+        })
     }
-}
+} 

@@ -30,17 +30,19 @@
         </mat-select>
       </mat-form-field>
 
-      <div class="margin-spacing">
-        <input (change)="onImagePicked($event)" placeholder="Upload Image" type="file" />
+      <div class="margin-spacing" *ngIf="adventure.id">
+        <input (change)="onImagePicked($event)" placeholder="Upload Cover" type="file" />
         <button mat-button-raised color="accent" (click)="onImageUpload()">Upload Cover</button>
       </div>
 
-      <div class="margin-spacing" *ngIf="!adventure.id">
-        <h3>You need to save this adventure before uploading a cover</h3>
+      <div class="margin-spacing" *ngIf="adventure.id">
+        <input (change)="onPDFSelect($event)" placeholder="Upload PDF" type="file" />
+        <button mat-button-raised color="accent" (click)="onPDFUpload()">Upload PDF</button>
       </div>
 
-      <div class="margin-spacing">
-        <input (change)="onPDFSelect($event)" placeholder="Upload Image" type="file" />
+      
+      <div class="margin-spacing" *ngIf="!adventure.id">
+        <h3>You need to save this adventure before uploading a cover and pdf</h3>
       </div>
 
       <quill-editor [(ngModel)]="adventure.summary" (onContentChanged)="captureHTML($event, 'summary')"></quill-editor>
@@ -61,5 +63,5 @@
 </mat-card>
 
 <mat-card>
-  <button mat-raised-button color="primary">Save</button>
+  <button (click)="saveChanges()" mat-raised-button color="primary">Save</button>
 </mat-card>

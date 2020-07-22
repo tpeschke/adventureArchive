@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdventureService } from '../utils/adventure.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-adventure-add',
@@ -8,19 +8,21 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./adventure-add.component.css']
 })
 export class AdventureAddComponent implements OnInit {
-  imageObj: File;
   beastService: any;
   beast: any;
+  imageObj: File;
+  PDFObj: File;
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
     public adventureService: AdventureService,
-    public router: ActivatedRoute
   ) { }
 
   private adventure = null
 
   ngOnInit() {
-    if (this.router.snapshot.params.id !== '0') {
-      this.adventureService.getSingleAdventure(this.router.snapshot.params.id).subscribe(incomingAdventure => {
+    if (this.route.snapshot.params.id !== '0') {
+      this.adventureService.getSingleAdventure(this.route.snapshot.params.id).subscribe(incomingAdventure => {
         this.adventure = incomingAdventure[0]
       })
     } else {
@@ -30,19 +32,15 @@ export class AdventureAddComponent implements OnInit {
         "patreontier": "20",
         "seriescode": null,
         "seriesnumber": null,
-        "summary": null
+        "summary": null,
+        "pdf": null
       }
     }
     console.log(this.adventure)
   }
 
   captureInput(event, type, index, secondaryType, thirdType) {
-    if (type === 'conflict') {
-      let newSecondaryObject = Object.assign({}, this.adventure[type])
-      newSecondaryObject[secondaryType] = [...newSecondaryObject[secondaryType]]
-      newSecondaryObject[secondaryType][index][thirdType] = event.target.value
-      this.adventure = Object.assign({}, this.adventure, {[type]: newSecondaryObject})
-    } else if (!secondaryType) {
+    if (!secondaryType) {
       this.adventure = Object.assign({}, this.adventure, { [type]: event.target.value })
     } else if (secondaryType && !thirdType) {
       let newSecondaryObject = [...this.adventure[type]]
@@ -81,13 +79,30 @@ export class AdventureAddComponent implements OnInit {
     const imageForm = new FormData();
     imageForm.append('image', this.imageObj);
     this.adventureService.imageUpload(imageForm, this.adventure.id).subscribe(res => {
-      this.adventure.image = res['image']
+      this.imageObj = res['image']
     });
   }
 
   onPDFSelect(event: Event): void {
     const FILE = (event.target as HTMLInputElement).files[0];
-    this.adventure.pdf = FILE;
+    this.PDFObj = FILE;
+  }
+
+  onPDFUpload() {
+    const imageForm = new FormData();
+    imageForm.append('pdf', this.PDFObj);
+    this.adventureService.pdfUpload(imageForm, this.adventure.title).subscribe(res => {
+      this.PDFObj = res['pdf']
+    });
+  }
+
+  saveChanges() {
+    let id = this.route.snapshot.paramMap.get('id');
+    if (+id) {
+      // this.beastService.updateBeast(this.beast).subscribe(_ => this.router.navigate([`/main/beast/${id}/gm`]))
+    } else {
+      this.adventureService.addAdventure(this.adventure).subscribe()
+    }
   }
 
 }

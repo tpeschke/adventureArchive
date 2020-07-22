@@ -48,6 +48,9 @@ function ownerAuth (req, res, next) {
 }
 
 app.post('/api/uploadImage/:id', ownerAuth, upload.array('image', 1), (req, res) => res.send({ image: req.file }));
+app.post('/api/uploadPDF/:title', ownerAuth, upload.array('pdf', 1), (req, res) => res.send({ image: req.file }));
+
+app.post('/api/adventure', ownerAuth, mainCtrl.addAdventure)
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../dist/index.html'));

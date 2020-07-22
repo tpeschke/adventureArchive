@@ -9,7 +9,6 @@ create table aaAdventureMain (
 create table aasummary (
     id serial primary key,
     adventureId integer,
-    index integer,
     body text
 );
 

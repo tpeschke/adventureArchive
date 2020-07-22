@@ -62,6 +62,14 @@ export class AdventureService {
       )
   }
 
+  addAdventure(adventure): any {
+    return this.http.post(local.endpointBase + '/api/adventure', adventure)
+      .pipe(
+        // catchError(this.handleError('search', []))
+      )
+  }
+
+
   searchAdventures(queries): Observable<Adventure[]> {
     return this.http.get<Adventure[]>(local.endpointBase + '/api/search', {params: queries})
       .pipe(
@@ -73,5 +81,10 @@ export class AdventureService {
   imageUpload(imageForm: FormData, id: number) {
     this.toastr.warning('', `image uploading`)
     return this.http.post(local.endpointBase + '/api/uploadImage/' + id, imageForm);
+  }
+
+  pdfUpload(imageForm: FormData, title: string) {
+    this.toastr.warning('', `pdf uploading`)
+    return this.http.post(local.endpointBase + '/api/uploadPDF/' + title.replace(/ /g,"_").toLowerCase(), imageForm);
   }
 }
