@@ -51,3 +51,21 @@ mat-card {
     background: rgba(0, 0, 0, 0.35);
   }
   
+  .downloadButtons {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0
+  }
+
+  .patreonLockedMessage {
+    margin: 15px 0
+  }
+
+  button {
+    background: #990000 !important;
+  }
+
+  button:hover {
+    background: #b45f06 !important;
+  }
+  

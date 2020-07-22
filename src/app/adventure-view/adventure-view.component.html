@@ -1,28 +1,29 @@
 <mat-card>
   <div>
-      <div class="featuredHeader">
-          <h1>{{adventure.seriescode}}{{adventure.seriesnumber}}: {{adventure.title}}</h1>
+    <div class="featuredHeader">
+      <h1>{{adventure.seriescode}}{{adventure.seriesnumber}}: {{adventure.title}}</h1>
+    </div>
+
+    <div>
+      <div class="adventureCoverShell featuredShell">
+        <img *ngIf="!adventure.locked" class="adventureCovers" [src]="imageBase + adventure.id" [alt]="adventure.title">
+        <div class="adventureLocked" *ngIf="adventure.locked">
+          <img class="adventureCovers" [src]="imageBase + adventure.id" [alt]="adventure.title">
+          <div class="adventureLock"></div>
+
+          <i *ngIf="adventure.tooltip === 'Early Access'" matTooltip="{{adventure.tooltip}}" matTooltipPosition="right"
+            class="fas fa-dice-d20"></i>
+          <i *ngIf="adventure.tooltip === 'Advanced'" matTooltip="{{adventure.tooltip}}" matTooltipPosition="right"
+            class="fas fa-plus"></i>
+        </div>
       </div>
 
-      <div>
-          <div class="adventureCoverShell featuredShell">
-              <img *ngIf="!adventure.locked" class="adventureCovers"
-                  [src]="imageBase + adventure.id" [alt]="adventure.title">
-              <div class="adventureLocked" *ngIf="adventure.locked">
-                  <img class="adventureCovers" [src]="imageBase + adventure.id" [alt]="adventure.title">
-                  <div class="adventureLock"></div>
-                  
-              <i *ngIf="adventure.tooltip === 'Early Access'" matTooltip="{{adventure.tooltip}}" matTooltipPosition="right" class="fas fa-dice-d20"></i>
-              <i *ngIf="adventure.tooltip === 'Advanced'" matTooltip="{{adventure.tooltip}}" matTooltipPosition="right" class="fas fa-plus"></i>
-              </div>
-          </div>
-
-          <quill-view-html [content]="adventure.summary"></quill-view-html>
-      </div>
+      <quill-view-html [content]="adventure.summary"></quill-view-html>
+    </div>
   </div>
 </mat-card>
 
-<mat-card>
+<mat-card *ngIf="!adventure.locked">
   <h1>Meta Notes</h1>
 </mat-card>
 
@@ -32,5 +33,18 @@
 
 <mat-card>
   <h1>Downloads</h1>
-  <button *ngIf="loginService.userLoggedIn && loginService.userLoggedIn.id === 1" mat-raised-button  color="primary" [routerLink]="['/add', adventure.id]">Edit</button>
+  <div *ngIf="!adventure.locked" class="downloadButtons">
+    <button mat-raised-button color="primary">Download</button>
+
+    <button mat-raised-button color="primary"
+      >Download Maps & Handouts</button>
+  </div>
+
+  <div *ngIf="adventure.locked" class="patreonLockedMessage">
+    <p>You currently don't have the Patreon tier to access this Adventure.</p>
+    <p>You can visit our Patreon <a href="https://www.patreon.com/bonfireRPG" target="_blank">here</a></p>
+  </div>
+  
+  <button *ngIf="loginService.userLoggedIn && loginService.userLoggedIn.id === 1" mat-raised-button color="primary"
+    [routerLink]="['/add', adventure.id]">Edit</button>
 </mat-card>
