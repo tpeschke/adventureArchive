@@ -19,14 +19,14 @@ module.exports = {
         const db = req.app.get('db')
 
         db.get.featuredAdventure().then(result => {
-            db.get.summaryPreview(result[0].id).then(summary => {
+            db.get.summary(result[0].id).then(summary => {
                 let adventureObj = {}
                 if (req.user) {
                     adventureObj = {...result[0], locked: req.user.patreon < result[0].patreontier}
                 } else {
                     adventureObj = {...result[0], locked: !(result[0].patreontier === 0)}
                 }
-                adventureObj.summary = summary[0].body;
+                adventureObj.summary = summary[0].summary.split("</p>")[0] + "</p>";
                 res.send([adventureObj])
             })
         })
@@ -35,13 +35,14 @@ module.exports = {
         const db = req.app.get('db')
 
         db.get.adventurePreview(+req.params.id).then(result => {
-            db.get.summaryFull(+req.params.id).then(summary => {
+            db.get.summary(+req.params.id).then(summary => {
                 let adventureObj = {}
                 if (req.user) {
-                    adventureObj = {...result[0], locked: req.user.patreon < result[0].patreontier, summary: summary[0].summary}
+                    adventureObj = {...result[0], locked: req.user.patreon < result[0].patreontier}
                 } else {
-                    adventureObj = {...result[0], locked: !(result[0].patreontier === 0), summaryy: summary[0].summary}
+                    adventureObj = {...result[0], locked: !(result[0].patreontier === 0)}
                 }
+                adventureObj.summary = summary[0].summary
                 res.send([adventureObj])
             })
         })

@@ -21,7 +21,7 @@ export class HomePageComponent implements OnInit {
     this.adventureService.getAllAdventures().subscribe(incomingAdventures => {
       this.adventures = incomingAdventures
     })
-    this.adventureService.getFeaturedAdventure().subscribe(incomingFeaturedAdventure => { 
+    this.adventureService.getFeaturedAdventure().subscribe(incomingFeaturedAdventure => {
       this.featuredAdventure = incomingFeaturedAdventure[0]
     })
   }

@@ -10,14 +10,14 @@
       </div>
   </mat-card>
 
-  <mat-card>
+  <!-- <mat-card>
       <div *ngIf="featuredAdventure">
           <div class="featuredHeader">
               <h1 routerLink="../adventure/{{featuredAdventure.id}}">{{featuredAdventure.title}}</h1>
               <p>Featured Adventure</p>
           </div>
 
-          <div>
+          <div *ngIf="featuredAdventure.id">
               <div class="adventureCoverShell featuredShell">
                   <img routerLink="../adventure/{{featuredAdventure.id}}" *ngIf="!featuredAdventure.locked" class="adventureCovers" [src]="imageBase + adventure.id" [alt]="adventure.title">
                   <div routerLink="../adventure/{{featuredAdventure.id}}" class="adventureLocked" *ngIf="featuredAdventure.locked">
@@ -27,9 +27,11 @@
                   </div>
               </div>
 
-              <p class="summaryParagraph">{{featuredAdventure.summary}}</p>
+              <div>
+                  <quill-view-html [content]="featuredAdventure.summary"></quill-view-html>
+              </div>
               <button class="secondaryButtonColor" mat-raised-button routerLink="../adventure/{{featuredAdventure.id}}">Learn More</button>
           </div>
       </div>
-  </mat-card>
+  </mat-card> -->
 </div>
