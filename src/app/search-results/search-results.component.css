@@ -1,7 +1,14 @@
 .resultCountShell {
     width: 75%;
-    margin: 0 auto 15px;
-    padding-left: 15px;
+    margin: 0 auto 15px auto;
+  }
+
+  h2 {
+    color: whitesmoke;
+    font-family: "ancient";
+    background: #00000075;
+    padding: 10px;
+    border-radius: 5px;
   }
   
   mat-card {
@@ -61,5 +68,3 @@
     height: 99.5%;
     background: rgba(0, 0, 0, 0.35);
   }
-  
-  

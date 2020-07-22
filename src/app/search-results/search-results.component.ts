@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router'
 import { AdventureService } from '../utils/adventure.service';
+import variables from '../local';
 
 @Component({
   selector: 'app-search-results',
@@ -16,6 +17,7 @@ export class SearchResultsComponent implements OnInit {
   ) { }
 
   public adventures = []
+  public imageBase = variables.imageBase;
 
   ngOnInit() {
     this.adventureService.searchAdventures(this.currentRoute.snapshot.params).subscribe(incomingAdventures => {

@@ -5,11 +5,10 @@
 <mat-card *ngFor="let adventure of adventures">
   <div>
       <img routerLink="../adventure/{{adventure.id}}" *ngIf="!adventure.locked" class="adventureCovers"
-          src="{{adventure.cover}}" alt="{{adventure.title}}">
+      [src]="imageBase + adventure.id" [alt]="adventure.title">
       <div routerLink="../adventure/{{adventure.id}}" class="adventureLocked" *ngIf="adventure.locked">
-          <img class="adventureCovers" src="{{adventure.cover}}" alt="{{adventure.title}}">
-          <div class="adventureLock"></div>
-          
+          <img class="adventureCovers" [src]="imageBase + adventure.id" [alt]="adventure.title">
+          <div class="adventureLock"></div>      
           <i *ngIf="adventure.tooltip === 'Early Access'" matTooltip="{{adventure.tooltip}}" matTooltipPosition="right" class="fas fa-dice-d20"></i>
           <i *ngIf="adventure.tooltip === 'Advanced'" matTooltip="{{adventure.tooltip}}" matTooltipPosition="right" class="fas fa-plus"></i>
       </div>
@@ -17,7 +16,7 @@
 
   <div class="middleSearch">
       <h1>{{adventure.title}}</h1>
-      <p>{{adventure.summary}}</p>
+      <quill-view-html [content]="adventure.summary"></quill-view-html>
   </div>
 
   <div>

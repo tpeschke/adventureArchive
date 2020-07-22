@@ -105,8 +105,7 @@ module.exports = {
                         } else {
                             adventureObj = { ...result[0], locked: !(result[0].patreontier === 0) }
                         }
-                        adventureObj.summary = summary[0].body;
-                        adventureArray.push({ ...adventureObj, summary: summary[0].body })
+                        adventureArray.push({ ...adventureObj, summary: summary[0].summary })
                     })
                 }))
             })
