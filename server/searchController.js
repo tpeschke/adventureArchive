@@ -98,7 +98,7 @@ module.exports = {
 
             finalIdArray.forEach(id => {
                 effectArray.push(db.get.adventurePreview(id).then(result => {
-                    return db.get.summaryPreview(id).then(summary => {
+                    return db.get.summary(id).then(summary => {
                         let adventureObj = {}
                         if (req.user) {
                             adventureObj = { ...result[0], locked: req.user.patreon < result[0].patreontier }

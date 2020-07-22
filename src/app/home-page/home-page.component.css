@@ -10,6 +10,7 @@
     justify-content: space-evenly;
     height: 100%;
     /* width: 49%; */
+    width: 100%;
     flex-wrap: wrap;
   }
   
@@ -59,14 +60,6 @@
     height: 99.5%;
     background: rgba(0, 0, 0, 0.35);
     border-radius: 5px;
-  }
-  
-  .fa-lock {
-    font-size: 25px;
-    color: whitesmoke;
-    position: absolute;
-    top: 5px;
-    left: 5px;
   }
   
   .summaryParagraph {

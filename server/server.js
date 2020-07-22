@@ -23,7 +23,7 @@ app.use((req, res, next) => {
     if (!req.user) {
         req.user = {
             id: 1,
-            patreon: 3
+            patreon: 0
         }
     }
     next();

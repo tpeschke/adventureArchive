@@ -75,3 +75,11 @@ button:hover {
 	background: #b45f06 !important;
 	color: whitesmoke !important;
 }
+
+.fas {
+    font-size: 25px;
+    color: whitesmoke;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+  }

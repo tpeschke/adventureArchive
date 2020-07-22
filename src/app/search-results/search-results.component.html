@@ -9,7 +9,9 @@
       <div routerLink="../adventure/{{adventure.id}}" class="adventureLocked" *ngIf="adventure.locked">
           <img class="adventureCovers" src="{{adventure.cover}}" alt="{{adventure.title}}">
           <div class="adventureLock"></div>
-          <i matTooltip="{{adventure.tooltip}}" matTooltipPosition="right" class="fas fa-lock"></i>
+          
+          <i *ngIf="adventure.tooltip === 'Early Access'" matTooltip="{{adventure.tooltip}}" matTooltipPosition="right" class="fas fa-dice-d20"></i>
+          <i *ngIf="adventure.tooltip === 'Advanced'" matTooltip="{{adventure.tooltip}}" matTooltipPosition="right" class="fas fa-plus"></i>
       </div>
   </div>
 
