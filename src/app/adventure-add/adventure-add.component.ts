@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdventureService } from '../utils/adventure.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import variables from '../local';
 
 @Component({
   selector: 'app-adventure-add',
@@ -19,6 +20,7 @@ export class AdventureAddComponent implements OnInit {
   ) { }
 
   private adventure = null
+  public imageBase = variables.imageBase;
 
   ngOnInit() {
     if (this.route.snapshot.params.id !== '0') {

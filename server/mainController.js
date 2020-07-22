@@ -34,15 +34,14 @@ module.exports = {
     singleAdventure: (req, res) => {
         const db = req.app.get('db')
 
-        db.get.adventurePreview(req.params.id).then(result => {
-            db.get.summaryFull(result[0].id).then(({summary}) => {
+        db.get.adventurePreview(+req.params.id).then(result => {
+            db.get.summaryFull(+req.params.id).then(summary => {
                 let adventureObj = {}
                 if (req.user) {
-                    adventureObj = {...result[0], locked: req.user.patreon < result[0].patreontier}
+                    adventureObj = {...result[0], locked: req.user.patreon < result[0].patreontier, summary: summary[0].summary}
                 } else {
-                    adventureObj = {...result[0], locked: !(result[0].patreontier === 0)}
+                    adventureObj = {...result[0], locked: !(result[0].patreontier === 0), summaryy: summary[0].summary}
                 }
-                adventureObj.summary = summary;
                 res.send([adventureObj])
             })
         })

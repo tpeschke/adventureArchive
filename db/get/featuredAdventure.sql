@@ -1,4 +1,4 @@
 SELECT * FROM aaadventuremain
 where seriesnumber = '1'
-ORDER BY RANDom()
+ORDER BY RANDOM()
 LIMIT 1

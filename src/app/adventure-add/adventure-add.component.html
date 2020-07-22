@@ -30,6 +30,16 @@
         </mat-select>
       </mat-form-field>
 
+      <div class="adventureCoverShell featuredShell">
+        <img *ngIf="!adventure.locked" class="adventureCovers"
+            [src]="imageBase + adventure.id" [alt]="adventure.title">
+        <div class="adventureLocked" *ngIf="adventure.locked">
+            <img class="adventureCovers" [src]="imageBase + adventure.id" [alt]="adventure.title">
+            <div class="adventureLock"></div>
+            <i matTooltip="{{adventure.tooltip}}" matTooltipPosition="right" class="fas fa-lock"></i>
+        </div>
+    </div>
+
       <div class="margin-spacing" *ngIf="adventure.id">
         <input (change)="onImagePicked($event)" placeholder="Upload Cover" type="file" />
         <button mat-button-raised color="accent" (click)="onImageUpload()">Upload Cover</button>

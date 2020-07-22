@@ -1,9 +1,9 @@
 <div class="outerShell">
   <mat-card>
       <div class="adventureCoverShell" *ngFor="let adventure of adventures">
-          <img routerLink="../adventure/{{adventure.id}}" *ngIf="!adventure.locked" class="adventureCovers" src="{{adventure.cover}}" alt="{{adventure.title}}">
+          <img routerLink="../adventure/{{adventure.id}}" *ngIf="!adventure.locked" class="adventureCovers" [src]="imageBase + adventure.id" [alt]="adventure.title">
           <div routerLink="../adventure/{{adventure.id}}" class="adventureLocked" *ngIf="adventure.locked">
-              <img class="adventureCovers" src="{{adventure.cover}}" alt="{{adventure.title}}">
+              <img class="adventureCovers" [src]="imageBase + adventure.id" [alt]="adventure.title">
               <div class="adventureLock"></div>
               <i matTooltip="{{adventure.tooltip}}" matTooltipPosition="right" class="fas fa-lock"></i>
           </div>
@@ -19,9 +19,9 @@
 
           <div>
               <div class="adventureCoverShell featuredShell">
-                  <img routerLink="../adventure/{{featuredAdventure.id}}" *ngIf="!featuredAdventure.locked" class="adventureCovers" src="{{featuredAdventure.cover}}" alt="{{featuredAdventure.title}}">
+                  <img routerLink="../adventure/{{featuredAdventure.id}}" *ngIf="!featuredAdventure.locked" class="adventureCovers" [src]="imageBase + adventure.id" [alt]="adventure.title">
                   <div routerLink="../adventure/{{featuredAdventure.id}}" class="adventureLocked" *ngIf="featuredAdventure.locked">
-                      <img class="adventureCovers" src="{{featuredAdventure.cover}}" alt="{{featuredAdventure.title}}">
+                      <img class="adventureCovers" [src]="imageBase + adventure.id" [alt]="adventure.title">
                       <div class="adventureLock"></div>
                       <i matTooltip="{{featuredAdventure.tooltip}}" matTooltipPosition="right" class="fas fa-lock"></i>
                   </div>

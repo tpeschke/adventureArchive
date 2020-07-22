@@ -7,9 +7,9 @@
       <div>
           <div class="adventureCoverShell featuredShell">
               <img *ngIf="!adventure.locked" class="adventureCovers"
-                  src="{{adventure.cover}}" alt="{{adventure.title}}">
+                  [src]="imageBase + adventure.id" [alt]="adventure.title">
               <div class="adventureLocked" *ngIf="adventure.locked">
-                  <img class="adventureCovers" src="{{adventure.cover}}" alt="{{adventure.title}}">
+                  <img class="adventureCovers" [src]="imageBase + adventure.id" [alt]="adventure.title">
                   <div class="adventureLock"></div>
                   <i matTooltip="{{adventure.tooltip}}" matTooltipPosition="right" class="fas fa-lock"></i>
               </div>
@@ -30,4 +30,5 @@
 
 <mat-card>
   <h1>Downloads</h1>
+  <button *ngIf="loginService.userLoggedIn && loginService.userLoggedIn.id === 1" mat-raised-button  color="primary" [routerLink]="['/add', adventure.id]">Edit</button>
 </mat-card>

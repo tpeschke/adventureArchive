@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdventureService } from '../utils/adventure.service';
+import variables from '../local';
 
 @Component({
   selector: 'app-home-page',
@@ -14,6 +15,7 @@ export class HomePageComponent implements OnInit {
 
   private adventures = []
   private featuredAdventure = null
+  public imageBase = variables.imageBase;
 
   ngOnInit() {
     this.adventureService.getAllAdventures().subscribe(incomingAdventures => {
