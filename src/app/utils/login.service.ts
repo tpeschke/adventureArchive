@@ -20,11 +20,18 @@ export class LoginService {
   ) { }
     
   public userLoggedIn = null
+  public expandedOuter = false;
+  public expandedEnviron = false;
 
   checkLogin(): Observable<User> {
     return this.http.get<User>(local.endpointBase + '/api/checkLogin')
       .pipe(
         tap(user => this.userLoggedIn = user)
       )
+  }
+
+  closeExpansionPanels() {
+    this.expandedOuter = false;
+    this.expandedEnviron = false;
   }
 }
