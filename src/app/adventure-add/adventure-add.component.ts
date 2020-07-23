@@ -38,7 +38,6 @@ export class AdventureAddComponent implements OnInit {
         "pdf": null
       }
     }
-    console.log(this.adventure)
   }
 
   captureInput(event, type, index, secondaryType, thirdType) {
@@ -53,7 +52,6 @@ export class AdventureAddComponent implements OnInit {
       newSecondaryObject[index][secondaryType][thirdType] = event.target.value
       this.adventure = Object.assign({}, this.adventure, { [type]: newSecondaryObject })
     }
-    console.log(this.adventure)
   }
 
   captureSelect(event, type, index, secondaryType) {
@@ -65,7 +63,6 @@ export class AdventureAddComponent implements OnInit {
     } else {
       this.adventure[type] = event.value
     }
-    console.log(this.adventure)
   }
   
   captureHTML(event, type) {
@@ -103,7 +100,7 @@ export class AdventureAddComponent implements OnInit {
     if (+id) {
       // this.beastService.updateBeast(this.beast).subscribe(_ => this.router.navigate([`/main/beast/${id}/gm`]))
     } else {
-      this.adventureService.addAdventure(this.adventure).subscribe()
+      this.adventureService.addAdventure(this.adventure).subscribe(result => this.router.navigate([`/adventure/${result.id}`]))
     }
   }
 

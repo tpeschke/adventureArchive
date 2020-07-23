@@ -51,7 +51,7 @@ module.exports = {
     //ADD
     addAdventure({ body, app }, res) {
         const db = app.get('db')
-        let {title, patreontier, seriescode, seriesnumber, summary} = body
+        let {title, patreontier, seriescode, seriesnumber, summary, type} = body
         , tooltip = "Early Access"
 
         switch (patreontier) {
@@ -64,7 +64,7 @@ module.exports = {
             default:
                 break;
         }
-        db.post.mainAdventure(title, patreontier, seriescode, seriesnumber, tooltip).then(result => {
+        db.post.mainAdventure(title, patreontier, seriescode, seriesnumber, tooltip, type).then(result => {
             let adventureId = result[0].id
             db.post.summary(adventureId, summary).then(resultTwo => {
                 res.send({id: adventureId})

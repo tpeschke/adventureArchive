@@ -56,9 +56,7 @@ module.exports = {
                     }
                     break;
                 case "typeOf":
-                    if (req.query.typeOf !== "NaN") {
-                        idArray.push(db.get.searchTypeOf(req.query.typeOf))
-                    }
+                    idArray.push(db.get.searchTypeOf(req.query.typeOf))
                     break;
                 case "location":
                 //query push to idArray

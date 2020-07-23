@@ -83,3 +83,10 @@ button:hover {
     top: 5px;
     left: 5px;
   }
+
+  strong {
+	  font-family: "ancient";
+	  font-weight: bold;
+	  font-size: 18px;
+	  color: #b45f06
+  }

@@ -1,2 +1,2 @@
-select Distinct(adventureid) as id from aaAdventureTypeOf
-where typeofid = $1
+select Distinct(id) from aaadventuremain
+where type = $1

@@ -117,8 +117,8 @@ export class SearchHeaderComponent implements OnInit {
 
   enterSearchTypeOf(e) {
     if (e.value) {
-      this.queryObject = { ...this.queryObject, typeOf: +e.value }
-      this.router.navigate(['/search', { ...this.queryObject, typeOf: +e.value }]);
+      this.queryObject = { ...this.queryObject, typeOf: e.value }
+      this.router.navigate(['/search', { ...this.queryObject, typeOf: e.value }]);
     } else if (e.value===undefined) {
       delete this.queryObject.typeOf
       this.router.navigate(['/search', { ...this.queryObject }]);
