@@ -39,14 +39,10 @@ export class SearchHeaderComponent implements OnInit {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         if(!event.url.includes('search')) {
-          this.closeExpansionPanels()
+          this.viewPanels.forEach(p => p.close());
         }
       }
     });
-  }
-
-  closeExpansionPanels() {
-    this.viewPanels.forEach(p => p.close());
   }
 
   enterSearchTitle(e) {
