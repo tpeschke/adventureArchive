@@ -59,23 +59,107 @@
 
 <mat-card>
   <h1>Search Information</h1>
-  <mat-form-field>
-    <mat-label>Type</mat-label>
-    <mat-select [value]="adventure.type" (selectionChange)="captureSelect($event, 'type')">
-      <mat-option value="Campaign">
-        Campaign
-      </mat-option>
-      <mat-option value="Adventure">
-        Adventure
-      </mat-option>
-      <mat-option value="Locale">
-        Locale
-      </mat-option>
-      <mat-option value="Encounter">
-        Encounter
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+  <div class="searchInfoShell" id="addSearchInfoShell">
+    <span>
+      <mat-form-field>
+        <mat-label>Type</mat-label>
+        <mat-select [value]="adventure.type" (selectionChange)="captureSelect($event, 'type')">
+          <mat-option value="Campaign">
+            Campaign
+          </mat-option>
+          <mat-option value="Adventure">
+            Adventure
+          </mat-option>
+          <mat-option value="Locale">
+            Locale
+          </mat-option>
+          <mat-option value="Encounter">
+            Encounter
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </span>
+    <span>
+      <mat-form-field>
+        <input matInput placeholder="Min level" [value]="adventure.levelmin"
+          (change)="captureInput($event, 'levelmin')">
+      </mat-form-field>
+    </span>
+    <span>
+      <mat-form-field>
+        <input matInput placeholder="Max level" [value]="adventure.levelmax"
+          (change)="captureInput($event, 'levelmax')">
+      </mat-form-field>
+    </span>
+    <span>
+      <mat-form-field>
+        <input matInput placeholder="Pages" [value]="adventure.pages"
+          (change)="captureInput($event, 'pages')">
+      </mat-form-field>
+    </span>
+    <span>
+      <mat-form-field>
+        <mat-label>Subsystem Focus</mat-label>
+        <mat-select [value]="adventure.subsystem" (selectionChange)="captureSelect($event, 'subsystem')">
+          <mat-option value="1">
+            Combat
+          </mat-option>
+          <mat-option value="2">
+            Social
+          </mat-option>
+          <mat-option value="3">
+            Skill
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </span>
+    <span>
+      <mat-form-field>
+        <mat-label>Setting</mat-label>
+        <mat-select [value]="adventure.setting" (selectionChange)="captureSelect($event, 'setting')">
+          <mat-option value="1">
+            The Holy Crucible (Basic)
+          </mat-option>
+          <mat-option value="2">
+            One Thousand Knives (Advanced)
+          </mat-option>
+          <mat-option value="3">
+            A Land to Break Men
+          </mat-option>
+          <mat-option value="4">
+            Empire Reborn
+          </mat-option>
+          <mat-option value="5">
+            Dread Sun
+          </mat-option>
+          <mat-option value="6">
+            Starjammer
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </span>
+  
+    <span>
+      <mat-checkbox [checked]="adventure.pregens" (change)="captureBoolean($event, 'pregens')" labelPosition="before">
+        Pregens
+      </mat-checkbox>
+    </span>
+    <span>
+      <mat-checkbox [checked]="adventure.handouts" (change)="captureBoolean($event, 'handouts')" labelPosition="before">
+        Handouts
+      </mat-checkbox>
+    </span>
+    <span>
+      <mat-checkbox [checked]="adventure.battlemaps" (change)="captureBoolean($event, 'battlemaps')" labelPosition="before">
+        Battle Maps
+      </mat-checkbox>
+    </span>
+    <span>
+      <mat-checkbox [checked]="adventure.playerguide" (change)="captureBoolean($event, 'playerguide')" labelPosition="before">
+        Player Guide
+      </mat-checkbox>
+    </span>
+  </div>
 </mat-card>
 
 <mat-card>

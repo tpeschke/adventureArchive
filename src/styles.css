@@ -90,3 +90,13 @@ button:hover {
 	  font-size: 18px;
 	  color: #b45f06
   }
+
+  
+  .searchInfoShell {
+    margin: 15px 0;
+    display: flex;
+    flex-direction: column;
+	flex-wrap: wrap;
+	max-height: 100px;
+    align-content: start;
+  }

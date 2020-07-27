@@ -31,7 +31,27 @@
   <h1>Search Information</h1>
   <div class="searchInfoShell">
     <span><strong>Type:</strong> {{adventure.type}}</span>
-    <span><strong>Plot Twist:</strong> True</span>
+    <span><strong>Level Range:</strong> {{adventure.levelmin}}-{{adventure.levelmax}}</span>
+    <span><strong>Legnth:</strong> {{adventure.pages}} pages</span>
+    <span><strong>Subsystem Focus:</strong> {{adventure.subsystem}}</span>
+    <span><strong>Setting:</strong> {{adventure.setting}}</span>
+    <span><strong>Pregens:</strong> 
+      <i *ngIf="adventure.pregens" class="fa fa-check-square" aria-hidden="true"></i>
+      <i *ngIf="!adventure.pregens" class="fa fa-square-o" aria-hidden="true"></i>
+    </span>
+    <span><strong>Handouts:</strong> 
+      <i *ngIf="adventure.handouts" class="fa fa-check-square" aria-hidden="true"></i>
+      <i *ngIf="!adventure.handouts" class="fa fa-square-o" aria-hidden="true"></i>
+    </span>
+    <span><strong>Battle Maps:</strong> 
+      <i *ngIf="adventure.battlemaps" class="fa fa-check-square" aria-hidden="true"></i>
+      <i *ngIf="!adventure.battlemaps" class="fa fa-square-o" aria-hidden="true"></i>
+    </span>
+    <span><strong>Player's Guide:</strong> 
+      <i *ngIf="adventure.playerguide" class="fa fa-check-square" aria-hidden="true"></i>
+      <i *ngIf="!adventure.playerguide" class="fa fa-square-o" aria-hidden="true"></i>
+    </span>
+    <span><strong>Plot Twist:</strong> <i class="fa fa-check-square" aria-hidden="true"></i></span>
   </div>
 </mat-card>
 

@@ -60,7 +60,7 @@ module.exports = {
     //ADD
     addAdventure({ body, app }, res) {
         const db = app.get('db')
-        let {title, patreontier, seriescode, seriesnumber, summary, type, version, pages, levelmin, levelmax, pregens, handouts, battlemap} = body
+        let {title, patreontier, seriescode, seriesnumber, summary, type, version, pages, levelmin, levelmax, pregens, handouts, battlemap, playerguide, subsystem, setting} = body
         , tooltip = "Early Access"
 
         switch (patreontier) {
@@ -79,7 +79,7 @@ module.exports = {
 
             promiseArray.push(db.post.summary(adventureId, summary).then())
 
-            promiseArray.push(db.post.adventureAuxInfo(adventureId, version, pages, levelmin, levelmax, pregens, handouts, battlemap ).then())
+            promiseArray.push(db.post.adventureAuxInfo(adventureId, version, pages ? +pages : null, levelmin ? +levelmin : null, levelmax ? +levelmax : null, pregens, handouts, battlemap, playerguide, subsystem ? +subsystem : null, setting ? +setting : null ).then())
 
             Promise.all(promiseArray).then(_ => res.send({id: adventureId}))
         })

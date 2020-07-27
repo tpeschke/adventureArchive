@@ -51,4 +51,10 @@ mat-card {
     background: rgba(0, 0, 0, 0.35);
   }
   
-  
+  .searchInfoShell span {
+    width: 25%
+  }
+
+  #addSearchInfoShell {
+    max-height: 100%
+  }

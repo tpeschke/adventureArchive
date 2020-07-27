@@ -35,7 +35,16 @@ export class AdventureAddComponent implements OnInit {
         "seriescode": null,
         "seriesnumber": null,
         "summary": null,
-        "version": "0.0.0"
+        "version": "0.0.0",
+        "pregens": false,
+        "handouts": false,
+        "battlemaps": false,
+        "playerguide": false,
+        "levelmin": 1,
+        "levelmax": 2,
+        "pages": 1,
+        "subsystem": null,
+        "setting": 1
       }
     }
   }
@@ -64,6 +73,10 @@ export class AdventureAddComponent implements OnInit {
   
   captureHTML(event, type) {
     this.adventure = Object.assign({}, this.adventure, { [type]: event.html })
+  }
+
+  captureBoolean(event, type) {
+    this.adventure = Object.assign({}, this.adventure, { [type]: event.checked })
   }
 
   onImagePicked(event: Event): void {
