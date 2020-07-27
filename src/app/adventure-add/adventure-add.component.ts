@@ -35,7 +35,7 @@ export class AdventureAddComponent implements OnInit {
         "seriescode": null,
         "seriesnumber": null,
         "summary": null,
-        "pdf": null
+        "version": "0.0.0"
       }
     }
   }
@@ -56,9 +56,6 @@ export class AdventureAddComponent implements OnInit {
 
   captureSelect(event, type, index, secondaryType) {
     if (secondaryType) {
-      if (event.value === 'r' && !this.adventure[type][index].ranges) {
-        this.adventure[type][index].ranges = { zero: 0, two: 0, four: 0, six: 0, eight: 0 }
-      }
       this.adventure[type][index][secondaryType] = event.value;
     } else {
       this.adventure[type] = event.value

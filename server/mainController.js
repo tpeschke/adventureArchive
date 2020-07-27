@@ -35,14 +35,23 @@ module.exports = {
         const db = req.app.get('db')
 
         db.get.adventurePreview(+req.params.id).then(result => {
-            db.get.summary(+req.params.id).then(summary => {
-                let adventureObj = {}
-                if (req.user) {
-                    adventureObj = {...result[0], locked: req.user.patreon < result[0].patreontier}
-                } else {
-                    adventureObj = {...result[0], locked: !(result[0].patreontier === 0)}
-                }
+            let promiseArray = []
+            let adventureObj = result[0]
+            if (req.user) {
+                adventureObj.locked = req.user.patreon < result[0].patreontier
+            } else {
+                adventureObj.locked = !(result[0].patreontier === 0)
+            }
+
+            promiseArray.push(db.get.summary(+req.params.id).then(summary => {
                 adventureObj.summary = summary[0].summary
+            }))
+
+            promiseArray.push(db.get.adventureAuxInfo(+req.params.id).then(auxInfo => {
+                adventureObj = {...adventureObj, ...auxInfo[0]}
+            }))
+
+            Promise.all(promiseArray).then(result => {
                 res.send([adventureObj])
             })
         })
@@ -51,7 +60,7 @@ module.exports = {
     //ADD
     addAdventure({ body, app }, res) {
         const db = app.get('db')
-        let {title, patreontier, seriescode, seriesnumber, summary, type} = body
+        let {title, patreontier, seriescode, seriesnumber, summary, type, version, pages, levelmin, levelmax, pregens, handouts, battlemap} = body
         , tooltip = "Early Access"
 
         switch (patreontier) {
@@ -66,9 +75,13 @@ module.exports = {
         }
         db.post.mainAdventure(title, patreontier, seriescode, seriesnumber, tooltip, type).then(result => {
             let adventureId = result[0].id
-            db.post.summary(adventureId, summary).then(resultTwo => {
-                res.send({id: adventureId})
-            })
+            ,   promiseArray = []
+
+            promiseArray.push(db.post.summary(adventureId, summary).then())
+
+            promiseArray.push(db.post.adventureAuxInfo(adventureId, version, pages, levelmin, levelmax, pregens, handouts, battlemap ).then())
+
+            Promise.all(promiseArray).then(_ => res.send({id: adventureId}))
         })
     }
 } 

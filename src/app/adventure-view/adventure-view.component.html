@@ -31,14 +31,18 @@
   <h1>Search Information</h1>
   <div class="searchInfoShell">
     <span><strong>Type:</strong> {{adventure.type}}</span>
+    <span><strong>Plot Twist:</strong> True</span>
   </div>
 </mat-card>
 
 <mat-card>
   <h1>Downloads</h1>
   <div *ngIf="!adventure.locked" class="downloadButtons">
-    <button mat-raised-button color="primary" 
-      (click)="downloadAdventure()">Download</button>
+    <div>
+      <button mat-raised-button color="primary" 
+        (click)="downloadAdventure()">Download</button>
+      <span><strong>Version Number: </strong>{{adventure.version}}</span>
+    </div>
     
     <button mat-raised-button color="primary"
       >Download Maps & Handouts</button>

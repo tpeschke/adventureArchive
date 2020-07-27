@@ -51,3 +51,21 @@ create table aaAdventureSubsystem (
     adventureid INTEGER,
     subsystemid INTEGER
 );
+
+create table aaadventureauxinfo (
+id serial primary key,
+adventureid int,
+version varchar(16),
+pages int,
+levelmin int,
+levelmax int,
+pregens BOOLEAN,
+handouts boolean,
+battlemap boolean
+);
+
+create table aaadventureseriescode (
+    id serial primary key,
+    seriescode varchar(10),
+    seriestitle text
+);

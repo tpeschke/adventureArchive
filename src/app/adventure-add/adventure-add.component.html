@@ -84,6 +84,10 @@
     <input (change)="onPDFSelect($event)" placeholder="Upload PDF" type="file" />
     <button mat-button-raised color="accent" (click)="onPDFUpload()">Upload PDF</button>
   </div>
+  <mat-form-field>
+    <input matInput placeholder="Version" [value]="adventure.version"
+      (change)="captureInput($event, 'version')">
+  </mat-form-field>
 </mat-card>
 
 <mat-card>
