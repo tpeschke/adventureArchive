@@ -101,13 +101,13 @@
       <mat-form-field>
         <mat-label>Subsystem Focus</mat-label>
         <mat-select [value]="adventure.subsystem" (selectionChange)="captureSelect($event, 'subsystem')">
-          <mat-option value="1">
+          <mat-option value="Combat">
             Combat
           </mat-option>
-          <mat-option value="2">
+          <mat-option value="Social">
             Social
           </mat-option>
-          <mat-option value="3">
+          <mat-option value="Skill">
             Skill
           </mat-option>
         </mat-select>
@@ -117,22 +117,22 @@
       <mat-form-field>
         <mat-label>Setting</mat-label>
         <mat-select [value]="adventure.setting" (selectionChange)="captureSelect($event, 'setting')">
-          <mat-option value="1">
+          <mat-option value="The Holy Crucible (Basic)">
             The Holy Crucible (Basic)
           </mat-option>
-          <mat-option value="2">
+          <mat-option value="One Thousand Knives (Advanced)">
             One Thousand Knives (Advanced)
           </mat-option>
-          <mat-option value="3">
+          <mat-option value="A Land to Break Men">
             A Land to Break Men
           </mat-option>
-          <mat-option value="4">
+          <mat-option value="Empire Reborn">
             Empire Reborn
           </mat-option>
-          <mat-option value="5">
+          <mat-option value="Dread Sun">
             Dread Sun
           </mat-option>
-          <mat-option value="6">
+          <mat-option value="Starjammer">
             Starjammer
           </mat-option>
         </mat-select>

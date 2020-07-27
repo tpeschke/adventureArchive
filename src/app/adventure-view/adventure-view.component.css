@@ -10,8 +10,8 @@ mat-card {
   span {
     display: flex;
     justify-content: space-between;
-    width: 25%;
-    margin-right: 15px;
+    width: 31%;
+    text-align: right;
   }
 
   .fa {

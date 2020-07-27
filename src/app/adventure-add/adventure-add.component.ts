@@ -44,7 +44,7 @@ export class AdventureAddComponent implements OnInit {
         "levelmax": 2,
         "pages": 1,
         "subsystem": null,
-        "setting": 1
+        "setting": null
       }
     }
   }

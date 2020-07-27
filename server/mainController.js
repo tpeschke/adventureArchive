@@ -79,7 +79,7 @@ module.exports = {
 
             promiseArray.push(db.post.summary(adventureId, summary).then())
 
-            promiseArray.push(db.post.adventureAuxInfo(adventureId, version, pages ? +pages : null, levelmin ? +levelmin : null, levelmax ? +levelmax : null, pregens, handouts, battlemap, playerguide, subsystem ? +subsystem : null, setting ? +setting : null ).then())
+            promiseArray.push(db.post.adventureAuxInfo(adventureId, version, pages ? +pages : null, levelmin ? +levelmin : null, levelmax ? +levelmax : null, pregens, handouts, battlemap, playerguide, subsystem, setting ).then())
 
             Promise.all(promiseArray).then(_ => res.send({id: adventureId}))
         })

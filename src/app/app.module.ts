@@ -23,7 +23,7 @@ import { AdventureService } from './utils/adventure.service';
 import { LoginService } from './utils/login.service';
 import { AdventureAddComponent } from './adventure-add/adventure-add.component'
 
-import { QuillModule } from 'ngx-quill'
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
