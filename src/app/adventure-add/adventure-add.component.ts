@@ -97,11 +97,7 @@ export class AdventureAddComponent implements OnInit {
 
   saveChanges() {
     let id = this.route.snapshot.paramMap.get('id');
-    if (+id) {
-      // this.beastService.updateBeast(this.beast).subscribe(_ => this.router.navigate([`/main/beast/${id}/gm`]))
-    } else {
-      this.adventureService.addAdventure(this.adventure).subscribe(result => this.router.navigate([`/adventure/${result.id}`]))
-    }
+    this.adventureService.addAdventure(this.adventure).subscribe(result => this.router.navigate([`/adventure/${result.id}`]))
   }
 
 }

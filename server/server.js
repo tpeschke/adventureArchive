@@ -1,4 +1,4 @@
-const { connection } = require('./secret')
+const { connection, downloadBase } = require('./secret')
     , express = require('express')
     , bodyParser = require('body-parser')
     , cors = require('cors')
@@ -7,7 +7,10 @@ const { connection } = require('./secret')
     , mainCtrl = require('./mainController')
     , path = require("path")
     , upload = require('./fileUploadController')
-    require('dotenv').config();
+    , fs = require('fs')
+    , AWS = require('aws-sdk')
+    , { bucketName } = require('./secret')
+require('dotenv').config();
 
 const app = new express()
 app.use(bodyParser.json())
@@ -35,9 +38,9 @@ app.get('/api/SingleAdventure/:id', mainCtrl.singleAdventure)
 
 app.get('/api/search', searchCtrl.search)
 
-app.get('/api/checkLogin', (req, res) => req.user ? res.send(req.user) : res.send({id: null, patreon: null}))
+app.get('/api/checkLogin', (req, res) => req.user ? res.send(req.user) : res.send({ id: null, patreon: null }))
 
-function ownerAuth (req, res, next) {
+function ownerAuth(req, res, next) {
     if (!req.user) {
         res.sendStatus(401)
     } else if (req.user.id !== 1 && req.user.id !== 21) {
@@ -53,7 +56,7 @@ app.post('/api/uploadPDF/:title', ownerAuth, upload.array('pdf', 1), (req, res) 
 app.post('/api/adventure', ownerAuth, mainCtrl.addAdventure)
 
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../dist/index.html'));
+    res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
 massive(connection).then(dbI => {

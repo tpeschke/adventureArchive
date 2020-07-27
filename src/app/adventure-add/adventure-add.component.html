@@ -44,12 +44,6 @@
         <button mat-button-raised color="accent" (click)="onImageUpload()">Upload Cover</button>
       </div>
 
-      <div class="margin-spacing" *ngIf="adventure.id">
-        <input (change)="onPDFSelect($event)" placeholder="Upload PDF" type="file" />
-        <button mat-button-raised color="accent" (click)="onPDFUpload()">Upload PDF</button>
-      </div>
-
-
       <div class="margin-spacing" *ngIf="!adventure.id">
         <h3>You need to save this adventure before uploading a cover and pdf</h3>
       </div>
@@ -86,6 +80,10 @@
 
 <mat-card>
   <h1>Downloads</h1>
+  <div class="margin-spacing" *ngIf="adventure.id">
+    <input (change)="onPDFSelect($event)" placeholder="Upload PDF" type="file" />
+    <button mat-button-raised color="accent" (click)="onPDFUpload()">Upload PDF</button>
+  </div>
 </mat-card>
 
 <mat-card>

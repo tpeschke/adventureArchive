@@ -37,8 +37,9 @@
 <mat-card>
   <h1>Downloads</h1>
   <div *ngIf="!adventure.locked" class="downloadButtons">
-    <button mat-raised-button color="primary">Download</button>
-
+    <button mat-raised-button color="primary" 
+      (click)="downloadAdventure()">Download</button>
+    
     <button mat-raised-button color="primary"
       >Download Maps & Handouts</button>
   </div>

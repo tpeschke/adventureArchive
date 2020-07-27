@@ -25,4 +25,13 @@ export class AdventureViewComponent implements OnInit {
     })
   }
 
+  downloadAdventure() {
+    let adventureTitle = this.adventure.title.replace(/ /g, "_").toLowerCase()
+      , link = document.createElement('a')
+      , fileName = adventureTitle + '.pdf'
+    link.href = variables.imageBase + fileName;
+    link.download = fileName;
+    link.click();
+  }
+
 }

@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, tap, map } from 'rxjs/operators';
 import local from '../local';
 
 import { ToastrService } from 'ngx-toastr';
 
 class Adventure {
-    id: number
-    title: string
-    summary: string[]
-    cover: string
-    patreonTier: number
+  id: number
+  title: string
+  summary: string[]
+  cover: string
+  patreonTier: number
 }
 
 @Injectable({
@@ -69,9 +69,8 @@ export class AdventureService {
       )
   }
 
-
   searchAdventures(queries): Observable<Adventure[]> {
-    return this.http.get<Adventure[]>(local.endpointBase + '/api/search', {params: queries})
+    return this.http.get<Adventure[]>(local.endpointBase + '/api/search', { params: queries })
       .pipe(
         tap(),
         catchError(this.handleError('get search adventures', []))
@@ -85,6 +84,6 @@ export class AdventureService {
 
   pdfUpload(imageForm: FormData, title: string) {
     this.toastr.warning('', `pdf uploading`)
-    return this.http.post(local.endpointBase + '/api/uploadPDF/' + title.replace(/ /g,"_").toLowerCase(), imageForm);
+    return this.http.post(local.endpointBase + '/api/uploadPDF/' + title, imageForm);
   }
 }
