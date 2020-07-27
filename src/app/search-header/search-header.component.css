@@ -47,7 +47,10 @@ mat-card {
   }
   
   .environShell {
-    margin-top: 15px
+    align-items: start;
+    flex-direction: column;
+    max-height: 125px;
+    margin-left: 8px;
   }
   
   .searchBody div p:first-child {
