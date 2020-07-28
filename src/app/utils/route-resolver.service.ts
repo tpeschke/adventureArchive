@@ -19,7 +19,6 @@ export class RouteResolverService {
     state: RouterStateSnapshot
   ): Observable<any> {
     let id = +route.paramMap.get('id');
-    console.log(id)
     if (id) {
       return this.adventureService.getSingleAdventure(id)
         .pipe(
