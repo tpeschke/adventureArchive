@@ -9,7 +9,7 @@ const { connection, downloadBase } = require('./secret')
     , upload = require('./fileUploadController')
     , fs = require('fs')
     , AWS = require('aws-sdk')
-    , { bucketName } = require('./secret')
+    , { fakeAuth } = require('./secret')
 require('dotenv').config();
 
 const app = new express()
@@ -18,19 +18,7 @@ app.use(cors())
 
 app.use(express.static(__dirname + `/../dist/`));
 
-/////////////////////////////////
-//TESTING TOPLEVEL MIDDLEWARE////
-///COMMENT OUT WHEN AUTH0 READY///
-/////////////////////////////////
-app.use((req, res, next) => {
-    if (!req.user) {
-        req.user = {
-            id: 1,
-            patreon: 0
-        }
-    }
-    next();
-})
+app.use(fakeAuth)
 
 app.get('/api/AllAdventures', mainCtrl.previews)
 app.get('/api/FeaturedAdventure', mainCtrl.featured)

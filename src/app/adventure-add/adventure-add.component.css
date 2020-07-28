@@ -58,3 +58,22 @@ mat-card {
   #addSearchInfoShell {
     max-height: 100%
   }
+
+  
+
+  .chipShell {
+    display: flex;
+    padding: 5px;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .chipShell div {
+    margin-left: 10px
+  }
+
+  .mat-chip.mat-standard-chip.mat-chip-selected.mat-primary {
+    background: whitesmoke;
+    color: black;
+    margin: 0
+  }

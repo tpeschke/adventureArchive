@@ -10,6 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { MatChipsModule } from '@angular/material/chips';
 
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -24,6 +25,7 @@ import { LoginService } from './utils/login.service';
 import { AdventureAddComponent } from './adventure-add/adventure-add.component'
 
 import { QuillModule } from 'ngx-quill';
+import { EnvironConverterPipe } from './utils/environ-converter.pipe';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { QuillModule } from 'ngx-quill';
     AdventureViewComponent,
     SearchResultsComponent,
     SearchHeaderComponent,
-    AdventureAddComponent
+    AdventureAddComponent,
+    EnvironConverterPipe
   ],
   imports: [
     BrowserModule,
@@ -49,6 +52,7 @@ import { QuillModule } from 'ngx-quill';
     MatSelectModule,
     MatCheckboxModule,
     FormsModule,
+    MatChipsModule,
     QuillModule.forRoot()
   ],
   providers: [AdventureService, LoginService],

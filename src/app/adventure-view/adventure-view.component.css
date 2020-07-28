@@ -18,6 +18,22 @@ mat-card {
     margin-left: 10px;
     font-size: 18px;
   }
+
+  .chipShell {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+  }
+
+  .chipShell div {
+    margin-left: 10px
+  }
+
+  .mat-chip.mat-standard-chip.mat-chip-selected.mat-primary {
+    background: whitesmoke;
+    color: black;
+    margin: 0
+  }
   
   .adventureCoverShell {
     width: 32%;

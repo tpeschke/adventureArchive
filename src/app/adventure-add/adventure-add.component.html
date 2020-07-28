@@ -59,6 +59,96 @@
 
 <mat-card>
   <h1>Search Information</h1>
+  <div class="chipShell">
+    <strong>Author(s):</strong>
+    <div>
+      <mat-chip-list>
+        <div *ngFor="let author of adventure.author; let i = index">
+          <mat-chip *ngIf="!author.deleted" (click)="removeNewSecondaryItem('author', i)" color="primary" selected>
+            {{author.name}}</mat-chip>
+        </div>
+      </mat-chip-list>
+    </div>
+  </div>
+  
+  <mat-form-field>
+    <input matInput placeholder="Author" (change)="captureChipInput($event, 'author')">
+  </mat-form-field>
+  <button mat-raised-button color="accent" (click)="addChip('author')">Add Author</button>
+
+  <div class="chipShell">
+    <strong>Environ(s):</strong>
+    <div>
+      <mat-chip-list>
+        <div *ngFor="let environ of adventure.environ; let i = index">
+          <mat-chip *ngIf="!environ.deleted" (click)="removeNewSecondaryItem('environ', i)" color="primary" selected>
+            {{environ.environid | environConverter}}</mat-chip>
+        </div>
+      </mat-chip-list>
+    </div>
+  </div>
+
+  <mat-form-field>
+    <mat-label>Select New Environ</mat-label>
+    <mat-select (selectionChange)="captureChip($event, 'environ')">
+      <mat-option value="1">
+        Dungeon/Ruins
+      </mat-option>
+      <mat-option value="2">
+        Wilderness
+      </mat-option>
+      <mat-option value="3">
+        Forest
+      </mat-option>
+      <mat-option value="4">
+        Castle
+      </mat-option>
+      <mat-option value="5">
+        Cave/Underground
+      </mat-option>
+      <mat-option value="6">
+        Mountain
+      </mat-option>
+      <mat-option value="7">
+        Plains
+      </mat-option>
+      <mat-option value="8">
+        Swamp
+      </mat-option>
+      <mat-option value="9">
+        Urban
+      </mat-option>
+      <mat-option value="10">
+        Ship
+      </mat-option>
+      <mat-option value="11">
+        Coastal
+      </mat-option>
+      <mat-option value="12">
+        Aquatic
+      </mat-option>
+      <mat-option value="13">
+        Other
+      </mat-option>
+      <mat-option value="14">
+        Desert
+      </mat-option>
+      <mat-option value="15">
+        Island
+      </mat-option>
+      <mat-option value="16">
+        Jungle
+      </mat-option>
+      <mat-option value="17">
+        Sewer
+      </mat-option>
+      <mat-option value="18">
+        House
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button color="accent" (click)="addChip('environ')">Add Environment</button>
+
   <div class="searchInfoShell" id="addSearchInfoShell">
     <span>
       <mat-form-field>
@@ -93,8 +183,7 @@
     </span>
     <span>
       <mat-form-field>
-        <input matInput placeholder="Pages" [value]="adventure.pages"
-          (change)="captureInput($event, 'pages')">
+        <input matInput placeholder="Pages" [value]="adventure.pages" (change)="captureInput($event, 'pages')">
       </mat-form-field>
     </span>
     <span>
@@ -110,6 +199,9 @@
           <mat-option value="Skill">
             Skill
           </mat-option>
+          <mat-option>
+            None
+          </mat-option>
         </mat-select>
       </mat-form-field>
     </span>
@@ -117,8 +209,8 @@
       <mat-form-field>
         <mat-label>Setting</mat-label>
         <mat-select [value]="adventure.setting" (selectionChange)="captureSelect($event, 'setting')">
-          <mat-option value="The Holy Crucible (Basic)">
-            The Holy Crucible (Basic)
+          <mat-option value="The Sacred Crucible (Basic)">
+            The Sacred Crucible (Basic)
           </mat-option>
           <mat-option value="One Thousand Knives (Advanced)">
             One Thousand Knives (Advanced)
@@ -135,10 +227,13 @@
           <mat-option value="Starjammer">
             Starjammer
           </mat-option>
+          <mat-option value="Agnostic">
+            Agnostic
+          </mat-option>
         </mat-select>
       </mat-form-field>
     </span>
-  
+
     <span>
       <mat-checkbox [checked]="adventure.pregens" (change)="captureBoolean($event, 'pregens')" labelPosition="before">
         Pregens
@@ -150,12 +245,14 @@
       </mat-checkbox>
     </span>
     <span>
-      <mat-checkbox [checked]="adventure.battlemaps" (change)="captureBoolean($event, 'battlemaps')" labelPosition="before">
+      <mat-checkbox [checked]="adventure.battlemaps" (change)="captureBoolean($event, 'battlemaps')"
+        labelPosition="before">
         Battle Maps
       </mat-checkbox>
     </span>
     <span>
-      <mat-checkbox [checked]="adventure.playerguide" (change)="captureBoolean($event, 'playerguide')" labelPosition="before">
+      <mat-checkbox [checked]="adventure.playerguide" (change)="captureBoolean($event, 'playerguide')"
+        labelPosition="before">
         Player Guide
       </mat-checkbox>
     </span>
@@ -169,8 +266,7 @@
     <button mat-button-raised color="accent" (click)="onPDFUpload()">Upload PDF</button>
   </div>
   <mat-form-field>
-    <input matInput placeholder="Version" [value]="adventure.version"
-      (change)="captureInput($event, 'version')">
+    <input matInput placeholder="Version" [value]="adventure.version" (change)="captureInput($event, 'version')">
   </mat-form-field>
 </mat-card>
 

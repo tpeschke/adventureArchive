@@ -36,9 +36,13 @@ export class AdventureAddComponent implements OnInit {
     "levelmax": 2,
     "pages": 1,
     "subsystem": null,
-    "setting": null
+    "setting": null,
+    "author": [],
+    "environ": []
   }
   public imageBase = variables.imageBase;
+  public author = null
+  public environ = null
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -77,6 +81,35 @@ export class AdventureAddComponent implements OnInit {
 
   captureBoolean(event, type) {
     this.adventure = Object.assign({}, this.adventure, { [type]: event.checked })
+  }
+
+  captureChipInput(event, type) {
+    if (type === "author") {
+      this[type] = {name: event.target.value}
+    } else {
+      this[type] = event.target.value
+    }
+  }
+
+  
+  captureChip(event, type) {
+    this.environ = { environid: +event.value }
+  }
+
+  addChip(type) {
+    if (this[type]) {
+      this.adventure[type].push(this[type])
+      this[type] = null;
+    }
+  }
+
+  removeNewSecondaryItem(type, index, secondType) {
+    let deleted
+    if (!secondType) {
+      deleted = this.adventure[type].splice(index, 1)
+    } else {
+      deleted = this.adventure[type][secondType].splice(index, 1);
+    }
   }
 
   onImagePicked(event: Event): void {

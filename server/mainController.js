@@ -1,4 +1,5 @@
 const upload = require('./fileUploadController')
+const { createSocket } = require('dgram')
 
 module.exports = {
     previews: (req, res) => {
@@ -49,7 +50,16 @@ module.exports = {
 
             promiseArray.push(db.get.adventureAuxInfo(+req.params.id).then(auxInfo => {
                 delete auxInfo[0].id
+                delete auxInfo[0].adventureid
                 adventureObj = {...adventureObj, ...auxInfo[0]}
+            }))
+
+            promiseArray.push(db.get.authors(+req.params.id).then(authorList => {
+                adventureObj.author = authorList
+            }))
+
+            promiseArray.push(db.get.environ(+req.params.id).then(environList => {
+                adventureObj.environ = environList
             }))
 
             Promise.all(promiseArray).then(result => {
@@ -61,7 +71,7 @@ module.exports = {
     //ADD
     addAdventure({ body, app }, res) {
         const db = app.get('db')
-        let {title, patreontier, seriescode, seriesnumber, summary, type, version, pages, levelmin, levelmax, pregens, handouts, battlemap, playerguide, subsystem, setting} = body
+        let {title, patreontier, seriescode, seriesnumber, summary, type, version, pages, levelmin, levelmax, pregens, handouts, battlemap, playerguide, subsystem, setting, author:authors, environ:environs} = body
         , tooltip = "Early Access"
 
         switch (patreontier) {
@@ -81,6 +91,28 @@ module.exports = {
             promiseArray.push(db.post.summary(adventureId, summary).then())
 
             promiseArray.push(db.post.adventureAuxInfo(adventureId, version, pages ? +pages : null, levelmin ? +levelmin : null, levelmax ? +levelmax : null, pregens, handouts, battlemap, playerguide, subsystem, setting ).then())
+
+            authors.forEach(author => {
+                if(author.delete) {
+
+                } else if (!author.id) {
+                    promiseArray.push(db.post.author(author.name).then(_=>{
+                        return promiseArray.push(db.post.authorAdventure(adventureId, author.name).then())
+                    }))
+                } else {
+
+                }
+            })
+
+            environs.forEach(environ => {
+                if(environ.delete) {
+
+                } else if (!environ.id) {
+                    promiseArray.push(db.post.environ(adventureId, environ.environid).then())
+                } else {
+
+                }
+            })
 
             Promise.all(promiseArray).then(_ => res.send({id: adventureId}))
         })

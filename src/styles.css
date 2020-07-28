@@ -91,12 +91,13 @@ button:hover {
 	  color: #b45f06
   }
 
-  
   .searchInfoShell {
-    margin: 15px 0;
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
 	flex-wrap: wrap;
 	max-height: 100px;
     align-content: space-between;
   }
+
+  

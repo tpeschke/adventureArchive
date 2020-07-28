@@ -22,7 +22,6 @@ export class AdventureViewComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.adventure = data.adventure[0]
-      console.log(this.adventure)
     })
   }
 

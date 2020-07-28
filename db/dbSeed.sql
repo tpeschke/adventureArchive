@@ -69,3 +69,20 @@ create table aaadventureseriescode (
     seriescode varchar(10),
     seriestitle text
 );
+
+create table aaauthors (
+    id serial PRIMARY key,
+    name varchar(150)
+);
+
+create table aaauthorsadventure (
+    id serial PRIMARY key,
+    adventureid int,
+    authorid int
+);
+
+create table aaenvironsadventure (
+    id serial primary key,
+    adventureid int,
+    environid int
+);
