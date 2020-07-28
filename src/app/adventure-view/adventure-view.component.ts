@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdventureService } from '../utils/adventure.service';
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { LoginService } from '../utils/login.service';
 import variables from '../local';
 @Component({
@@ -12,7 +12,7 @@ export class AdventureViewComponent implements OnInit {
 
   constructor(
     public adventureService: AdventureService,
-    public router: ActivatedRoute,
+    public route: ActivatedRoute,
     private loginService: LoginService
   ) { }
 
@@ -20,8 +20,9 @@ export class AdventureViewComponent implements OnInit {
   public imageBase = variables.imageBase;
 
   ngOnInit() {
-    this.adventureService.getSingleAdventure(this.router.snapshot.params.id).subscribe(incomingAdventure => {
-      this.adventure = incomingAdventure[0]
+    this.route.data.subscribe(data => {
+      this.adventure = data.adventure[0]
+      console.log(this.adventure)
     })
   }
 

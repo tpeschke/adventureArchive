@@ -48,6 +48,7 @@ module.exports = {
             }))
 
             promiseArray.push(db.get.adventureAuxInfo(+req.params.id).then(auxInfo => {
+                delete auxInfo[0].id
                 adventureObj = {...adventureObj, ...auxInfo[0]}
             }))
 

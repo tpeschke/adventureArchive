@@ -19,34 +19,34 @@ export class AdventureAddComponent implements OnInit {
     public adventureService: AdventureService,
   ) { }
 
-  private adventure = null
+  private adventure = {
+    "id": null,
+    "title": "",
+    "cover": "",
+    "patreontier": "20",
+    "seriescode": "",
+    "seriesnumber": "",
+    "summary": null,
+    "version": "0.0.0",
+    "pregens": false,
+    "handouts": false,
+    "battlemaps": false,
+    "playerguide": false,
+    "levelmin": 1,
+    "levelmax": 2,
+    "pages": 1,
+    "subsystem": null,
+    "setting": null
+  }
   public imageBase = variables.imageBase;
 
   ngOnInit() {
-    if (this.route.snapshot.params.id !== '0') {
-      this.adventureService.getSingleAdventure(this.route.snapshot.params.id).subscribe(incomingAdventure => {
-        this.adventure = incomingAdventure[0]
-      })
-    } else {
-      this.adventure = {
-        "title": null,
-        "cover": null,
-        "patreontier": "20",
-        "seriescode": null,
-        "seriesnumber": null,
-        "summary": null,
-        "version": "0.0.0",
-        "pregens": false,
-        "handouts": false,
-        "battlemaps": false,
-        "playerguide": false,
-        "levelmin": 1,
-        "levelmax": 2,
-        "pages": 1,
-        "subsystem": null,
-        "setting": null
+    this.route.data.subscribe(data => {
+      let adventure = data.adventure[0]
+      if (adventure) {
+        this.adventure = adventure
       }
-    }
+    })
   }
 
   captureInput(event, type, index, secondaryType, thirdType) {
