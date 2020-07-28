@@ -39,9 +39,9 @@ module.exports = {
             let promiseArray = []
             let adventureObj = result[0]
             if (req.user) {
-                adventureObj.locked = req.user.patreon < result[0].patreontier
+                adventureObj.locked = req.user.patreon < adventureObj.patreontier
             } else {
-                adventureObj.locked = !(result[0].patreontier === 0)
+                adventureObj.locked = !(adventureObj.patreontier === 0)
             }
 
             promiseArray.push(db.get.summary(+req.params.id).then(summary => {

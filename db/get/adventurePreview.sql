@@ -1,2 +1,3 @@
-select * from aaadventuremain
-where id = $1
+select aaadventuremain.*, seriestitle from aaadventuremain
+left join aaadventureseriescode on aaadventuremain.seriescode = aaadventureseriescode.seriescode
+where aaadventuremain.id = $1
