@@ -76,6 +76,13 @@ export class AdventureService {
       )
   }
 
+  deleteAdventure(id): any {
+    return this.http.delete(local.endpointBase + '/api/delete/adventure/' + id)
+      .pipe(
+        // catchError(this.handleError('search', []))
+      )
+  }
+
   searchAdventures(queries): Observable<Adventure[]> {
     return this.http.get<Adventure[]>(local.endpointBase + '/api/search', { params: queries })
       .pipe(

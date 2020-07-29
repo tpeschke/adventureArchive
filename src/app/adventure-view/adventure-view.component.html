@@ -58,19 +58,19 @@
     <span><strong>Length:</strong> {{adventure.pages}} pages</span>
     <span><strong>Subsystem Focus:</strong> {{adventure.subsystem}}</span>
     <span><strong>Setting:</strong> {{adventure.setting}}</span>
-    <span><strong>Pregens:</strong> 
+    <span><strong>Pregens:</strong>
       <i *ngIf="adventure.pregens" class="fa fa-check-square" aria-hidden="true"></i>
       <i *ngIf="!adventure.pregens" class="fa fa-square-o" aria-hidden="true"></i>
     </span>
-    <span><strong>Handouts:</strong> 
+    <span><strong>Handouts:</strong>
       <i *ngIf="adventure.handouts" class="fa fa-check-square" aria-hidden="true"></i>
       <i *ngIf="!adventure.handouts" class="fa fa-square-o" aria-hidden="true"></i>
     </span>
-    <span><strong>Battle Maps:</strong> 
+    <span><strong>Battle Maps:</strong>
       <i *ngIf="adventure.battlemap" class="fa fa-check-square" aria-hidden="true"></i>
       <i *ngIf="!adventure.battlemap" class="fa fa-square-o" aria-hidden="true"></i>
     </span>
-    <span><strong>Player's Guide:</strong> 
+    <span><strong>Player's Guide:</strong>
       <i *ngIf="adventure.playerguide" class="fa fa-check-square" aria-hidden="true"></i>
       <i *ngIf="!adventure.playerguide" class="fa fa-square-o" aria-hidden="true"></i>
     </span>
@@ -82,20 +82,22 @@
   <h1>Downloads</h1>
   <div *ngIf="!adventure.locked" class="downloadButtons">
     <div>
-      <button mat-raised-button color="primary" 
-        (click)="downloadAdventure()">Download</button>
+      <button mat-raised-button color="primary" (click)="downloadAdventure()">Download</button>
       <span><strong>Version Number: </strong>{{adventure.version}}</span>
     </div>
-    
-    <button mat-raised-button color="primary"
-      >Download Maps & Handouts</button>
+
+    <button mat-raised-button color="primary">Download Maps & Handouts</button>
   </div>
 
   <div *ngIf="adventure.locked" class="patreonLockedMessage">
     <p>You currently don't have the Patreon tier to access this Adventure.</p>
     <p>You can visit our Patreon <a href="https://www.patreon.com/bonfireRPG" target="_blank">here</a></p>
   </div>
-  
-  <button *ngIf="loginService.userLoggedIn && loginService.userLoggedIn.id === 1" mat-raised-button color="primary"
-    [routerLink]="['/add', adventure.id]">Edit</button>
+
+  <div class="downloadButtons">
+    <button *ngIf="loginService.userLoggedIn && loginService.userLoggedIn.id === 1" mat-raised-button color="primary"
+      [routerLink]="['/add', adventure.id]">Edit</button>
+    <button *ngIf="loginService.userLoggedIn && loginService.userLoggedIn.id === 1" mat-raised-button
+      (click)="deleteAdventure()">Delete</button>
+  </div>
 </mat-card>

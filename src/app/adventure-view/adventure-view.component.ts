@@ -13,6 +13,7 @@ export class AdventureViewComponent implements OnInit {
   constructor(
     public adventureService: AdventureService,
     public route: ActivatedRoute,
+    private router: Router,
     private loginService: LoginService
   ) { }
 
@@ -32,6 +33,10 @@ export class AdventureViewComponent implements OnInit {
     link.href = variables.imageBase + fileName;
     link.download = fileName;
     link.click();
+  }
+
+  deleteAdventure() {
+    this.adventureService.deleteAdventure(this.adventure.id).subscribe(_=>this.router.navigate([`/`]))
   }
 
 }

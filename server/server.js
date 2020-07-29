@@ -28,8 +28,6 @@ app.get('/api/search', searchCtrl.search)
 
 app.get('/api/checkLogin', (req, res) => req.user ? res.send(req.user) : res.send({ id: null, patreon: null }))
 
-app.patch('/api/update/adventure', mainCtrl.updateAdventure)
-
 function ownerAuth(req, res, next) {
     if (!req.user) {
         res.sendStatus(401)
@@ -44,6 +42,10 @@ app.post('/api/uploadImage/:id', ownerAuth, upload.array('image', 1), (req, res)
 app.post('/api/uploadPDF/:title', ownerAuth, upload.array('pdf', 1), (req, res) => res.send({ image: req.file }));
 
 app.post('/api/adventure', ownerAuth, mainCtrl.addAdventure)
+
+app.patch('/api/update/adventure', ownerAuth, mainCtrl.updateAdventure)
+
+app.delete('/api/delete/adventure/:id', ownerAuth, mainCtrl.deleteAdventure)
 
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../dist/index.html'));

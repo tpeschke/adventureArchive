@@ -94,7 +94,7 @@ module.exports = {
 
             authors.forEach(author => {
                 if(author.delete) {
-
+                    promiseArray.push(db.delete.authorAdventure(author.id).then())
                 } else if (!author.id) {
                     promiseArray.push(db.post.author(author.name).then(_=>{
                         return promiseArray.push(db.post.authorAdventure(adventureId, author.name).then())
@@ -104,7 +104,7 @@ module.exports = {
 
             environs.forEach(environ => {
                 if(environ.delete) {
-
+                    promiseArray.push(db.delete.specificEnviron(environ.id).then())
                 } else if (!environ.id) {
                     promiseArray.push(db.post.environ(adventureId, environ.environid).then())
                 }
@@ -139,7 +139,7 @@ module.exports = {
 
             authors.forEach(author => {
                 if(author.delete) {
-
+                    promiseArray.push(db.delete.authorAdventure(author.id).then())
                 } else if (!author.id) {
                     promiseArray.push(db.post.author(author.name).then(_=>{
                         return promiseArray.push(db.post.authorAdventure(id, author.name).then())
@@ -149,7 +149,7 @@ module.exports = {
 
             environs.forEach(environ => {
                 if(environ.delete) {
-
+                    promiseArray.push(db.delete.specificEnviron(environ.id).then())
                 } else if (!environ.id) {
                     promiseArray.push(db.post.environ(id, environ.environid).then())
                 }
@@ -157,5 +157,20 @@ module.exports = {
 
             Promise.all(promiseArray).then(_ => res.send({id}))
         })
+    },
+
+    //DELETE
+    deleteAdventure({ params, app }, res) {
+        const db = app.get('db')
+            , id = +params.id
+        let promiseArray = []
+
+        promiseArray.push(db.delete.adventureAuxInfo(id).then())
+        promiseArray.push(db.delete.environs(id).then())
+        promiseArray.push(db.delete.mainAdventure(id).then())
+        promiseArray.push(db.delete.adventureAuxInfo(id).then())
+        promiseArray.push(db.delete.summary(id).then())
+
+        Promise.all(promiseArray).then(_ => res.send({id}))
     }
 } 
