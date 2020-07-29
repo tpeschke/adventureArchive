@@ -25,6 +25,7 @@
 
 <mat-card *ngIf="!adventure.locked">
   <h1>Meta Notes</h1>
+  <quill-view-html [content]="adventure.meta"></quill-view-html>
 </mat-card>
 
 <mat-card>

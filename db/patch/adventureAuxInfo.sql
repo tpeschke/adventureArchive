@@ -8,5 +8,6 @@ set version = $2,
     battlemap = $8, 
     playerguide = $9, 
     subsystem = $10, 
-    setting = $11
+    setting = $11,
+    meta = $12
 where adventureid = $1

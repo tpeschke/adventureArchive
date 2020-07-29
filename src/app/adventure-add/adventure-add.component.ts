@@ -38,7 +38,8 @@ export class AdventureAddComponent implements OnInit {
     "subsystem": null,
     "setting": null,
     "author": [],
-    "environ": []
+    "environ": [],
+    "meta": null
   }
   public imageBase = variables.imageBase;
   public author = null

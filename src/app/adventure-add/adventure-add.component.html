@@ -55,6 +55,7 @@
 
 <mat-card>
   <h1>Meta Notes</h1>
+  <quill-editor [(ngModel)]="adventure.meta" (onContentChanged)="captureHTML($event, 'meta')"></quill-editor>
 </mat-card>
 
 <mat-card>

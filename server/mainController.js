@@ -71,7 +71,7 @@ module.exports = {
     //ADD
     addAdventure({ body, app }, res) {
         const db = app.get('db')
-        let {title, patreontier, seriescode, seriesnumber, summary, type, version, pages, levelmin, levelmax, pregens, handouts, battlemap, playerguide, subsystem, setting, author:authors, environ:environs} = body
+        let {title, patreontier, seriescode, seriesnumber, summary, type, version, pages, levelmin, levelmax, pregens, handouts, battlemap, playerguide, subsystem, setting, author:authors, environ:environs, meta} = body
         , tooltip = "Early Access"
 
         switch (patreontier) {
@@ -90,7 +90,7 @@ module.exports = {
 
             promiseArray.push(db.post.summary(adventureId, summary).then())
 
-            promiseArray.push(db.post.adventureAuxInfo(adventureId, version, pages ? +pages : null, levelmin ? +levelmin : null, levelmax ? +levelmax : null, pregens, handouts, battlemap, playerguide, subsystem, setting ).then())
+            promiseArray.push(db.post.adventureAuxInfo(adventureId, version, pages ? +pages : null, levelmin ? +levelmin : null, levelmax ? +levelmax : null, pregens, handouts, battlemap, playerguide, subsystem, setting, meta ).then())
 
             authors.forEach(author => {
                 if(author.delete) {
@@ -117,7 +117,7 @@ module.exports = {
     //UPDATE
     updateAdventure({ body, app }, res) {
         const db = app.get('db')
-        let {id, title, patreontier, seriescode, seriesnumber, summary, type, version, pages, levelmin, levelmax, pregens, handouts, battlemap, playerguide, subsystem, setting, author:authors, environ:environs} = body
+        let {id, title, patreontier, seriescode, seriesnumber, summary, type, version, pages, levelmin, levelmax, pregens, handouts, battlemap, playerguide, subsystem, setting, author:authors, environ:environs, meta} = body
         , tooltip = "Early Access"
 
         switch (patreontier) {
@@ -135,7 +135,7 @@ module.exports = {
 
             promiseArray.push(db.patch.summary(id, summary).then())
 
-            promiseArray.push(db.patch.adventureAuxInfo(id, version, pages ? +pages : null, levelmin ? +levelmin : null, levelmax ? +levelmax : null, pregens, handouts, battlemap, playerguide, subsystem, setting ).then())
+            promiseArray.push(db.patch.adventureAuxInfo(id, version, pages ? +pages : null, levelmin ? +levelmin : null, levelmax ? +levelmax : null, pregens, handouts, battlemap, playerguide, subsystem, setting, meta ).then())
 
             authors.forEach(author => {
                 if(author.delete) {
