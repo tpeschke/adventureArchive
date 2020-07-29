@@ -99,8 +99,6 @@ module.exports = {
                     promiseArray.push(db.post.author(author.name).then(_=>{
                         return promiseArray.push(db.post.authorAdventure(adventureId, author.name).then())
                     }))
-                } else {
-
                 }
             })
 
@@ -109,12 +107,55 @@ module.exports = {
 
                 } else if (!environ.id) {
                     promiseArray.push(db.post.environ(adventureId, environ.environid).then())
-                } else {
-
                 }
             })
 
             Promise.all(promiseArray).then(_ => res.send({id: adventureId}))
+        })
+    },
+
+    //UPDATE
+    updateAdventure({ body, app }, res) {
+        const db = app.get('db')
+        let {id, title, patreontier, seriescode, seriesnumber, summary, type, version, pages, levelmin, levelmax, pregens, handouts, battlemap, playerguide, subsystem, setting, author:authors, environ:environs} = body
+        , tooltip = "Early Access"
+
+        switch (patreontier) {
+            case ("0"):
+                tooltip = "Basic"
+                break;
+            case ("3"):
+                tooltip = "Advanced"
+                break;
+            default:
+                break;
+        }
+        db.patch.mainAdventure(title, patreontier, seriescode, seriesnumber, tooltip, type, id).then(result => {
+            let promiseArray = []
+
+            promiseArray.push(db.patch.summary(id, summary).then())
+
+            promiseArray.push(db.patch.adventureAuxInfo(id, version, pages ? +pages : null, levelmin ? +levelmin : null, levelmax ? +levelmax : null, pregens, handouts, battlemap, playerguide, subsystem, setting ).then())
+
+            authors.forEach(author => {
+                if(author.delete) {
+
+                } else if (!author.id) {
+                    promiseArray.push(db.post.author(author.name).then(_=>{
+                        return promiseArray.push(db.post.authorAdventure(id, author.name).then())
+                    }))
+                }
+            })
+
+            environs.forEach(environ => {
+                if(environ.delete) {
+
+                } else if (!environ.id) {
+                    promiseArray.push(db.post.environ(id, environ.environid).then())
+                }
+            })
+
+            Promise.all(promiseArray).then(_ => res.send({id}))
         })
     }
 } 

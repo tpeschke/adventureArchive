@@ -28,6 +28,8 @@ app.get('/api/search', searchCtrl.search)
 
 app.get('/api/checkLogin', (req, res) => req.user ? res.send(req.user) : res.send({ id: null, patreon: null }))
 
+app.patch('/api/update/adventure', mainCtrl.updateAdventure)
+
 function ownerAuth(req, res, next) {
     if (!req.user) {
         res.sendStatus(401)

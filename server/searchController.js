@@ -28,8 +28,8 @@ module.exports = {
                         idArray.push(db.get.searchTimePeriod(req.query.timePeriod))
                     }
                     break;
-                case "battlemaps":
-                    idArray.push(db.get.searchBattlemaps(req.query.battlemaps))
+                case "battlemap":
+                    idArray.push(db.get.searchBattlemaps(req.query.battlemap))
                     break;
                 case "handouts":
                     idArray.push(db.get.searchHandouts(req.query.handouts))

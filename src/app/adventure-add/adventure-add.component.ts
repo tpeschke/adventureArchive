@@ -30,7 +30,7 @@ export class AdventureAddComponent implements OnInit {
     "version": "0.0.0",
     "pregens": false,
     "handouts": false,
-    "battlemaps": false,
+    "battlemap": false,
     "playerguide": false,
     "levelmin": 1,
     "levelmax": 2,
@@ -140,7 +140,11 @@ export class AdventureAddComponent implements OnInit {
 
   saveChanges() {
     let id = this.route.snapshot.paramMap.get('id');
-    this.adventureService.addAdventure(this.adventure).subscribe(result => this.router.navigate([`/adventure/${result.id}`]))
+    if (+id) { 
+      this.adventureService.updateAdventure(this.adventure).subscribe(result => this.router.navigate([`/adventure/${result.id}`]))
+    } else {
+      this.adventureService.addAdventure(this.adventure).subscribe(result => this.router.navigate([`/adventure/${result.id}`]))
+    }
   }
 
 }

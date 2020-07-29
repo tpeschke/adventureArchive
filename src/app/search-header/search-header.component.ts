@@ -12,7 +12,7 @@ class QueryObject {
   timePeriod?: string
   subsystem?: number
   typeOf?: number
-  battlemaps?: boolean
+  battlemap?: boolean
   handouts?: boolean
   playersGuide?: boolean
   plotTwist?: boolean
@@ -137,10 +137,10 @@ export class SearchHeaderComponent implements OnInit {
 
   enterSearchBattlemaps(e) {
     if (e.checked) {
-      this.queryObject = { ...this.queryObject, battlemaps: e.checked }
-      this.router.navigate(['/search', { ...this.queryObject, battlemaps: e.checked }]);
+      this.queryObject = { ...this.queryObject, battlemap: e.checked }
+      this.router.navigate(['/search', { ...this.queryObject, battlemap: e.checked }]);
     } else {
-      delete this.queryObject.battlemaps
+      delete this.queryObject.battlemap
       this.router.navigate(['/search', { ...this.queryObject }]);
     }
   }

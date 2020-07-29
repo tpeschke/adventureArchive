@@ -69,6 +69,13 @@ export class AdventureService {
       )
   }
 
+  updateAdventure(adventure): any {
+    return this.http.patch(local.endpointBase + '/api/update/adventure', adventure)
+      .pipe(
+        // catchError(this.handleError('search', []))
+      )
+  }
+
   searchAdventures(queries): Observable<Adventure[]> {
     return this.http.get<Adventure[]>(local.endpointBase + '/api/search', { params: queries })
       .pipe(

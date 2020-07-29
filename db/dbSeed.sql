@@ -27,7 +27,7 @@ create table aaSearchTable (
     pregens BOOLEAN,
     playerguide BOOLEAN,
     handouts boolean,
-    battlemaps boolean
+    battlemap boolean
 )
 
 create table aaEnvirons (
