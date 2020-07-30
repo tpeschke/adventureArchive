@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { LoginService } from './utils/login.service';
 import { Router } from '@angular/router';
+import variables from './local.js'
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,8 @@ export class AppComponent {
     private loginService: LoginService,
     public router: Router
   ) { }
+
+  public loginEndpoint = variables.login
 
   ngOnInit() {
     if (!this.loginService.userLoggedIn) {

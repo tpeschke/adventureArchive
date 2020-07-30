@@ -6,8 +6,13 @@
 
   <span class="middleSpace"></span>
 
-  <button *ngIf="loginService.userLoggedIn && loginService.userLoggedIn.id === 1" mat-raised-button [routerLink]="['/add', 0]">Add</button>
-  <button *ngIf="!loginService.userLoggedIn" mat-raised-button>Login</button>
+  <button *ngIf="loginService.userLoggedIn && loginService.userLoggedIn.id === 1" mat-raised-button
+    [routerLink]="['/add', 0]">Add</button>
+    <div *ngIf="loginService.userLoggedIn && !loginService.userLoggedIn.id">
+      <a href={{loginEndpoint}}>
+        <button mat-raised-button>Log In</button>
+      </a>
+    </div>
 </mat-toolbar>
 
 <app-search-header></app-search-header>
@@ -23,16 +28,12 @@
 
 <div class="backgroundImageShell">
   <div class="backgroundImageInner">
-    <img
-      src="../assets/images/left.JPEG"
-      alt="">
+    <img src="../assets/images/left.JPEG" alt="">
     <div class="bottomFade"></div>
     <div class="sideRightFade"></div>
   </div>
   <div class="backgroundImageInner">
-    <img
-      src="../assets/images/right.jpg"
-      alt="">
+    <img src="../assets/images/right.jpg" alt="">
     <div class="bottomFade"></div>
     <div class="sideLeftFade"></div>
   </div>
