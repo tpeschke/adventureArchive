@@ -1,2 +1,2 @@
-select id from aasearchtable
-where timeperiod = $1
+select adventureid as id from aaadventureauxinfo
+where setting like $1

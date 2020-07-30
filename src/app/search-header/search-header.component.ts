@@ -117,7 +117,7 @@ export class SearchHeaderComponent implements OnInit {
 
   enterSearchSubsystem(e) {
     if (e.value) {
-      this.queryObject = { ...this.queryObject, subsystem: +e.value }
+      this.queryObject = { ...this.queryObject, subsystem: e.value }
       this.router.navigate(['/search', { ...this.queryObject }]);
     } else if (e.value===undefined) {
       delete this.queryObject.subsystem

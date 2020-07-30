@@ -1,1 +1,1 @@
-select id from aasearchtable
+select id from aaadventuremain

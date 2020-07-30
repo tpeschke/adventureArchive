@@ -1,2 +1,2 @@
-select id from aasearchtable
-where maxlevel <= $1
+select adventureid as id from aaadventureauxinfo
+where levelmax <= $1

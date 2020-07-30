@@ -1,2 +1,2 @@
-select id from aaAdventureSubsystem
-where subsystemid = $1
+select adventureid as id from aaadventureauxinfo
+where subsystem = $1

@@ -37,11 +37,11 @@ module.exports = {
                 case "playersGuide":
                     idArray.push(db.get.searchPlayersGuide(req.query.playersGuide))
                     break;
-                case "plotTwist":
-                    idArray.push(db.get.searchPlotTwist(req.query.plotTwist))
-                    break;
                 case "pregens":
                     idArray.push(db.get.searchPregens(req.query.pregens))
+                    break;
+                case "plotTwist":
+                    idArray.push(db.get.searchPlotTwist())
                     break;
                 case "environ":
                     if (req.query.environ !== '') {
@@ -93,17 +93,17 @@ module.exports = {
             // add in logic that if the finalIdArray is empty, 
             // than to check the ids with the next highest count 
             // (queryLength - 1) and so on until you get something back
-
             finalIdArray.forEach(id => {
                 effectArray.push(db.get.adventurePreview(id).then(result => {
                     return db.get.summary(id).then(summary => {
-                        let adventureObj = {}
+                        let adventureObj = result[0]
                         if (req.user) {
-                            adventureObj = { ...result[0], locked: req.user.patreon < result[0].patreontier }
+                            adventureObj.locked = req.user.patreon < adventureObj.patreontier
                         } else {
-                            adventureObj = { ...result[0], locked: !(result[0].patreontier === 0) }
+                            adventureObj.locked = !(adventureObj.patreontier === 0)
                         }
-                        adventureArray.push({ ...adventureObj, summary: summary[0].summary })
+                        adventureObj.summary = summary[0].summary
+                        adventureArray.push(adventureObj)
                     })
                 }))
             })

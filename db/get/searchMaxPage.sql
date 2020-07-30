@@ -1,2 +1,2 @@
-select id from aasearchtable
-where pagecount <= $1
+select adventureid as id from aaadventureauxinfo
+where pages <= $1
