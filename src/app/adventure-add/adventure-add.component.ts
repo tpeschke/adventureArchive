@@ -92,7 +92,6 @@ export class AdventureAddComponent implements OnInit {
     }
   }
 
-  
   captureChip(event, type) {
     this.environ = { environid: +event.value }
   }
@@ -110,6 +109,9 @@ export class AdventureAddComponent implements OnInit {
       deleted = this.adventure[type].splice(index, 1)
     } else {
       deleted = this.adventure[type][secondType].splice(index, 1);
+    }
+    if (deleted[0].id) {
+      this.adventure[type].push({ id: deleted[0].id, deleted: true })
     }
   }
 

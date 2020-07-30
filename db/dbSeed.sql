@@ -86,3 +86,10 @@ create table aaenvironsadventure (
     adventureid int,
     environid int
 );
+
+create table aaviews (
+    id serial primary key,
+    adventureid int,
+    view int,
+    download int
+);

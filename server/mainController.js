@@ -62,6 +62,8 @@ module.exports = {
                 adventureObj.environ = environList
             }))
 
+            promiseArray.push(db.post.views(+req.params.id).then())
+
             Promise.all(promiseArray).then(result => {
                 res.send([adventureObj])
             })
@@ -93,7 +95,7 @@ module.exports = {
             promiseArray.push(db.post.adventureAuxInfo(adventureId, version, pages ? +pages : null, levelmin ? +levelmin : null, levelmax ? +levelmax : null, pregens, handouts, battlemap, playerguide, subsystem, setting, meta ).then())
 
             authors.forEach(author => {
-                if(author.delete) {
+                if(author.deleted) {
                     promiseArray.push(db.delete.authorAdventure(author.id).then())
                 } else if (!author.id) {
                     promiseArray.push(db.post.author(author.name).then(_=>{
@@ -103,15 +105,23 @@ module.exports = {
             })
 
             environs.forEach(environ => {
-                if(environ.delete) {
+                if(environ.deleted) {
                     promiseArray.push(db.delete.specificEnviron(environ.id).then())
                 } else if (!environ.id) {
                     promiseArray.push(db.post.environ(adventureId, environ.environid).then())
                 }
             })
 
-            Promise.all(promiseArray).then(_ => res.send({id: adventureId}))
+            Promise.all(promiseArray).then(_ => {
+                db.post.createViewEntry(adventureId).then(_ => {
+                    res.send({id: adventureId})
+                })
+            })
         })
+    },
+    recordDownload({params, app}, res) {
+        const db = app.get('db')
+        db.post.downloads(+params.id).then(_=>res.send({finished: true}))
     },
 
     //UPDATE
@@ -138,7 +148,7 @@ module.exports = {
             promiseArray.push(db.patch.adventureAuxInfo(id, version, pages ? +pages : null, levelmin ? +levelmin : null, levelmax ? +levelmax : null, pregens, handouts, battlemap, playerguide, subsystem, setting, meta ).then())
 
             authors.forEach(author => {
-                if(author.delete) {
+                if(author.deleted) {
                     promiseArray.push(db.delete.authorAdventure(author.id).then())
                 } else if (!author.id) {
                     promiseArray.push(db.post.author(author.name).then(_=>{
@@ -148,7 +158,7 @@ module.exports = {
             })
 
             environs.forEach(environ => {
-                if(environ.delete) {
+                if(environ.deleted) {
                     promiseArray.push(db.delete.specificEnviron(environ.id).then())
                 } else if (!environ.id) {
                     promiseArray.push(db.post.environ(id, environ.environid).then())

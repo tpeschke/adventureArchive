@@ -100,4 +100,8 @@ export class AdventureService {
     this.toastr.warning('', `pdf uploading`)
     return this.http.post(local.endpointBase + '/api/uploadPDF/' + title, imageForm);
   }
+
+  recordDownload(id) {
+    return this.http.get(local.endpointBase + '/api/recordDownload/' + id);
+  }
 }
