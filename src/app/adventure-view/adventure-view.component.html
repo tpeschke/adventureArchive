@@ -1,7 +1,8 @@
 <mat-card>
   <div>
     <div class="featuredHeader">
-      <h1>{{adventure.seriescode}}{{adventure.seriesnumber}}: {{adventure.title}}</h1>
+      <h1 *ngIf="adventure.seriescode">{{adventure.seriescode}}{{adventure.seriesnumber}}: {{adventure.title}}</h1>
+      <h1 *ngIf="!adventure.seriescode">{{adventure.title}}</h1>
     </div>
 
     <div>
