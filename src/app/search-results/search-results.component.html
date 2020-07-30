@@ -2,7 +2,7 @@
   <h2>{{adventures.length}} Results Found</h2>
 </div>
 
-<mat-card *ngFor="let adventure of adventures">
+<mat-card *ngFor="let adventure of adventures" routerLink="../adventure/{{adventure.id}}">
   <div>
       <img routerLink="../adventure/{{adventure.id}}" *ngIf="!adventure.locked" class="adventureCovers"
       [src]="imageBase + adventure.id" [alt]="adventure.title">
@@ -15,11 +15,8 @@
   </div>
 
   <div class="middleSearch">
-      <h1>{{adventure.title}}</h1>
+      <h1>{{adventure.seriescode}}{{adventure.seriesnumber}}: {{adventure.title}}</h1>
       <quill-view-html [content]="adventure.summary"></quill-view-html>
   </div>
 
-  <div>
-      Additional Search Info
-  </div>
 </mat-card>
