@@ -21,6 +21,10 @@ mat-card {
     flex-wrap: wrap;
     justify-content: space-evenly;
   }
+
+  .searchBody p {
+    text-indent: 0;
+  }
   
   .example-half-width {
     width: 47%;

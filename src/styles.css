@@ -119,3 +119,7 @@ button:hover {
   ::-webkit-scrollbar-thumb:hover {
 	background: grey; 
   }
+
+  p {
+  text-indent: 25px;
+}

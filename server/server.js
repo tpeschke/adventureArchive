@@ -18,16 +18,6 @@ app.use(cors())
 
 app.use(express.static(__dirname + `/../dist/`));
 
-app.get('/api/AllAdventures', mainCtrl.previews)
-app.get('/api/FeaturedAdventure', mainCtrl.featured)
-app.get('/api/SingleAdventure/:id', mainCtrl.singleAdventure)
-
-app.get('/api/search', searchCtrl.search)
-
-app.get('/api/checkLogin', (req, res) => req.user ? res.send(req.user) : res.send({ id: null, patreon: null }))
-
-app.get('/api/recordDownload/:id', mainCtrl.recordDownload)
-
 //==============================================
 app.use(session({
     secret,
@@ -83,6 +73,16 @@ app.get('/auth/logout', function (req, res) {
 })
 
 // =====================================
+
+app.get('/api/AllAdventures', mainCtrl.previews)
+app.get('/api/FeaturedAdventure', mainCtrl.featured)
+app.get('/api/SingleAdventure/:id', mainCtrl.singleAdventure)
+
+app.get('/api/search', searchCtrl.search)
+
+app.get('/api/recordDownload/:id', mainCtrl.recordDownload)
+
+app.get('/api/checkLogin', (req, res) => req.user ? res.send(req.user) : res.send({ id: null, patreon: null }))
 
 function ownerAuth(req, res, next) {
     if (!req.user) {

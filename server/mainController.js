@@ -1,6 +1,3 @@
-const upload = require('./fileUploadController')
-const { createSocket } = require('dgram')
-
 module.exports = {
     previews: (req, res) => {
         const db = req.app.get('db')
