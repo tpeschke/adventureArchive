@@ -27,7 +27,7 @@ export class AdventureViewComponent implements OnInit {
   }
 
   downloadAdventure() {
-    let adventureTitle = this.adventure.title.replace(/ /g, "_").toLowerCase()
+    let adventureTitle = this.adventure.title.replace(/ /g, "+")
       , link = document.createElement('a')
       , fileName = adventureTitle + '.pdf'
     this.adventureService.recordDownload(this.adventure.id).subscribe();
