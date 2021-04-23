@@ -1,4 +1,4 @@
-const { connection, fakeAuth, secret, domain, client_id, client_secret, callback } = require('./secret')
+const { databaseCredentials, fakeAuth, secret, domain, client_id, client_secret, callback } = require('./secret')
     , express = require('express')
     , bodyParser = require('body-parser')
     , cors = require('cors')
@@ -107,7 +107,7 @@ app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
-massive(connection).then(dbI => {
+massive(databaseCredentials).then(dbI => {
     app.set('db', dbI)
     app.listen(3101, _ => {
         console.log(`Why not here? Why not now? 3101`)
